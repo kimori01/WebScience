@@ -1,0 +1,51 @@
+﻿@using WebScience.ViewData;
+@model ViewDaoTaoLyLich
+
+<section class="content-header">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Sửa thông tin công tác</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="@Url.Action("EditDaoTao")" data-otf-ajax="true" method="post">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input type="hidden" id="MaLyLich" name="MaLyLich" value="@Model.MaLyLich" />
+                    <input type="hidden" id="IdLyLich" name="IdLyLich" value="@Model.IdLyLich" />
+                    <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="control-label">Bậc đào tạo:</label>
+                            @Html.DropDownList("MaBacDaoTao", new SelectList(ViewBag.HocVi, "MaHocVi", "TenHocVi"), new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Nơi đào tạo:</label>
+                            <input type="text" id="NoiDaoTao" name="NoiDaoTao" value="@Model.NoiDaoTao" required oninvalid="this.setCustomValidity('Vui lòng nhập nơi đào tạo!')" oninput="setCustomValidity('')" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Chuyên môn:</label>
+                            <input type="text" id="ChuyenMon" name="ChuyenMon" value="@Model.ChuyenMon" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập chuyên môn!')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Năm đào tạo:</label>
+                            <input type="text" id="NamTotNghiep" name="NamTotNghiep" value="@Model.NamTotNghiep" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập năm tốt nghiệp!')" oninput="setCustomValidity('')" >
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <a href="@Url.Action("ThongTinLyLich", new { Id = Model.IdLyLich })" class="btn btn-primary">Quay Lại</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</section>

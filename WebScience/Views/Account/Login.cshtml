@@ -1,0 +1,42 @@
+﻿@model WebScience.Models.tb_UserProfile
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>Quản Lý Khoa Học</b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Đăng Nhập Hệ Thống</p>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div class="form-group has-feedback">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Tài khoản" })
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            @Html.CheckBoxFor(m => m.RememberMe) Remember Me
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng Nhập</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        }
+    </div>
+    <!-- /.login-box-body -->
+</div>

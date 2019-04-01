@@ -1,0 +1,85 @@
+﻿@model IEnumerable<WebScience.ViewData.ViewCongTacLyLich>
+<!-- The timeline -->
+
+<ul class="timeline timeline-inverse">
+    @foreach (var item in Model)
+    {
+        <li class="time-label">
+            <input type="hidden" id="ShowMaLyLich" value="@item.MaLyLich" />
+            <input type="hidden" id="ShowIdLyLich" value="@item.IdLyLich" />
+            <input type="hidden" id="ShowId" value="@item.Id" />
+            <span class="bg-blue" id="ShowThoiGian">
+                @item.ThoiGian
+            </span>
+        </li>
+        <li>
+            <i class="fa fa-user bg-aqua"></i>
+            <div class="timeline-item">
+                <h3 class="timeline-header">
+                    <a href="#">Vị trí công tác: </a><a id="ShowViTriCongTac">@item.ViTriCongTac</a> 
+                    <a class="pull-right btn-box-tool" href="@Url.Action("DeleteCongTac", new { Id = item.Id, IdLyLich = item.IdLyLich })" onclick="return confirm('Anh/Chị muốn xóa dữ liệu này?');"><i class="fa fa-times"></i></a>
+                    <a class="pull-right btn-box-tool" href="@Url.Action("EditCongTac", new { Id = item.Id, IdLyLich = item.IdLyLich, IdMaLyLich = item.MaLyLich })"><i class="fa fa-edit"></i></a>
+                </h3>
+
+                <div class="timeline-body">
+                    <b>Tổ chức công tác: </b><p id="ShowToChucCongTac">@item.ToChucCongTac</p>
+                    <b>Địa chỉ Tổ chức: </b><p id="ShowDiaChiCongTac">@item.DiaChiCongTac</p>
+                </div>
+            </div>
+        </li>
+    }
+    <li>
+        <i class="fa fa-clock-o bg-gray"></i>
+    </li>
+</ul>
+
+<form class="form-horizontal">
+    <div class="form-group margin-bottom-none" style="padding-top: 10px;">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary pull-right btn-block btn-sm" data-toggle="modal" data-target="#modal-congtac">Thêm</button>
+        </div>
+    </div>
+</form>
+
+
+<div class="modal fade" id="modal-congtac">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Thêm mới thông tin công tác</h4>
+            </div>
+            <form action="@Url.Action("AddCongTac")" data-otf-ajax="true" data-otf-target="#themmoicongtac" method="post">
+                <input type="hidden" id="MaLyLich" name="MaLyLich" value="@Model.FirstOrDefault().MaLyLich" />
+                <input type="hidden" id="IdLyLich" name="IdLyLich" value="@Model.FirstOrDefault().IdLyLich" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Thời gian:</label>
+                        <input type="text" id="ThoiGian" name="ThoiGian" required oninvalid="this.setCustomValidity('Vui lòng nhập thời gian!')" oninput="setCustomValidity('')" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Vị trí công tác:</label>
+                        <input type="text" id="ViTriCongTac" name="ViTriCongTac" required oninvalid="this.setCustomValidity('Vui lòng nhập vị trí công tác!')" oninput="setCustomValidity('')" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tổ chức công tác:</label>
+                        <input type="text" id="ToChucCongTac" name="ToChucCongTac" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập tổ chức công tác!')" oninput="setCustomValidity('')">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Địa chỉ công tác:</label>
+                        <input type="text" id="DiaChiCongTac" name="DiaChiCongTac" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ công tác!')" oninput="setCustomValidity('')">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

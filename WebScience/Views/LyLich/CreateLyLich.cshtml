@@ -1,0 +1,120 @@
+﻿@model WebScience.Models.tb_LyLich
+
+@{
+    ViewBag.Title = "CreateLyLich";
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem { Text = "Nam", Value = "Nam", Selected = true });
+    listItems.Add(new SelectListItem { Text = "Nữ", Value = "Nữ" });
+
+    IEnumerable<SelectListItem> itemhocham = new SelectList(ViewBag.HocHam, "MaHocHam", "TenHocHam");
+    IEnumerable<SelectListItem> itemhocvi = new SelectList(ViewBag.HocVi, "MaHocVi", "TenHocVi");
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thêm mới lý lịch</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MaLyLich)
+                                    @Html.TextBoxFor(model => model.MaLyLich, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MaLyLich, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NgaySinh)
+                                    @Html.TextBoxFor(model => model.NgaySinh, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MaHocHam)
+                                    @Html.DropDownListFor(model => model.MaHocHam, itemhocham, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MaHocHam, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MaHocVi)
+                                    @Html.DropDownListFor(model => model.MaHocVi, itemhocvi, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MaHocVi, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DiaChi)
+                                    @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DienThoai)
+                                    @Html.TextBoxFor(model => model.DienThoai, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email)
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.HoVaTen)
+                                    @Html.TextBoxFor(model => model.HoVaTen, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.HoVaTen, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.GioiTinh)
+                                    @Html.DropDownListFor(model => model.GioiTinh, listItems, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NamHocHam)
+                                    @Html.TextBoxFor(model => model.NamHocHam, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NamHocHam, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NamHocVi)
+                                    @Html.TextBoxFor(model => model.NamHocVi, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NamHocVi, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DiDong)
+                                    @Html.TextBoxFor(model => model.DiDong, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DiDong, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Fax)
+                                    @Html.TextBoxFor(model => model.Fax, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.GhiChu)
+                                    @Html.TextBoxFor(model => model.GhiChu, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

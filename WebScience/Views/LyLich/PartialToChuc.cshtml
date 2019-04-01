@@ -1,0 +1,70 @@
+﻿@using WebScience.ViewData;
+@model ViewToChucLyLich
+<!-- About Me Box -->
+<div class="box box-primary" id="danhsachtochuc">
+    <div class="box-header with-border">
+        <h3 class="box-title">Tổ chức - nơi làm việc</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <strong><i class="fa fa-book margin-r-5"></i> Tên tổ chức</strong>
+        <p>@Model.TenToChuc</p>
+        <hr>
+        <strong><i class="fa fa-user margin-r-5"></i> Tên người lãnh đạo</strong>
+        <p>@Model.TenNguoiLanhDao</p>
+        <hr>
+        <strong><i class="fa fa-file-text-o margin-r-5"></i> Điện thoại người Lãnh đạo</strong>
+        <p>@Model.DienThoaiLanhDao</p>
+        <hr>
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Địa chỉ tổ chức</strong>
+        <p>@Model.DiaChiToChuc</p>
+        <hr>
+        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-tochuc">Chỉnh Sửa</button>
+    </div>
+    <!-- /.box-body -->
+
+</div>
+<!-- /.box -->
+
+<div class="modal fade" id="modal-tochuc">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Thông tin tổ chức</h4>
+            </div>
+            <form action="@Url.Action("EditToChuc")" data-otf-ajax="true" data-otf-target="#danhsachtochuc" method="post">
+                <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                <input type="hidden" id="IdLyLich" name="IdLyLich" value="@Model.IdLyLich" />
+                <input type="hidden" id="MaLyLich" name="MaLyLich" value="@Model.MaLyLich" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Tên tổ chức:</label>
+                        <input type="text" required oninvalid="this.setCustomValidity('Vui lòng nhập tên tổ chức!')" oninput="setCustomValidity('')" class="form-control" id="TenToChuc" name="TenToChuc" value="@Model.TenToChuc">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tên người lãnh đạo:</label>
+                        <input type="text" required oninvalid="this.setCustomValidity('Vui lòng nhập tên người lãnh đạo!')" oninput="setCustomValidity('')" class="form-control" id="TenNguoiLanhDao" name="TenNguoiLanhDao" value="@Model.TenNguoiLanhDao">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Điện thoại người Lãnh đạo:</label>
+                        <input type="text" class="form-control" id="DienThoaiLanhDao" name="DienThoaiLanhDao" value="@Model.DienThoaiLanhDao">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Địa chỉ tổ chức:</label>
+                        <input type="text" class="form-control" id="DiaChiToChuc" name="DiaChiToChuc" value="@Model.DiaChiToChuc">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

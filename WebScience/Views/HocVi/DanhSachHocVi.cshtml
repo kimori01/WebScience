@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebScience.Models.tb_HocVi>
+@{
+    ViewBag.Title = "DanhSachHocVi";
+}
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh Sách Học Vị</h3>
+
+                    <div class="box-tools">
+                        <a href="@Url.Action("CreateHocVi","HocVi")" class="btn btn-block btn-primary btn-sm">Thêm</a>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row">
+                            <div class="col-sm-12">
+                                <table id="example" class="table table-bordered table-hover dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.MaHocVi)</th>
+                                            <th>@Html.DisplayNameFor(model => model.TenHocVi)</th>
+                                            <th>@Html.DisplayNameFor(model => model.GhiChu)</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.MaHocVi)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.TenHocVi)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.GhiChu)</td>
+                                                <td>
+                                                    @Html.ActionLink("Edit", "EditHocVi", new { id = item.Id }) |
+                                                    @Html.ActionLink("Delete", "DeleteHocVi", new { id = item.Id })
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+

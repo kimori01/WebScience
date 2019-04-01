@@ -1,0 +1,98 @@
+﻿@model WebScience.Models.tb_DeTai
+@{
+    ViewBag.Title = "CreateDeTai";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thêm mới đề tài</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MaDeTai)
+                                    @Html.TextBoxFor(model => model.MaDeTai, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MaDeTai, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TacGia)
+                                    @Html.TextBoxFor(model => model.TacGia, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NgayCongBo)
+                                    @Html.TextBoxFor(model => model.NgayCongBo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NgayCongBo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.QuyMo)
+                                    @Html.TextBoxFor(model => model.QuyMo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.QuyMo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ThoiGian)
+                                    @Html.TextBoxFor(model => model.ThoiGian, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ThoiGian, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TenDeTai)
+                                    @Html.TextBoxFor(model => model.TenDeTai, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TenDeTai, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TieuDe)
+                                    @Html.TextBoxFor(model => model.TieuDe, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NgayDangKy)
+                                    @Html.TextBoxFor(model => model.NgayDangKy, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NgayDangKy, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NoiApDung)
+                                    @Html.TextBoxFor(model => model.NoiApDung, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NoiApDung, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.GhiChu)
+                                    @Html.TextBoxFor(model => model.GhiChu, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NoiDung)
+                                    @Html.TextBoxFor(model => model.NoiDung, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

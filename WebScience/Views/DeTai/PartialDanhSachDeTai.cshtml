@@ -1,0 +1,52 @@
+﻿@model PagedList.IPagedList<WebScience.Models.tb_DeTai>
+@using PagedList.Mvc;
+
+<div class="row" id="danhsachdetai">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Responsive Hover Table</h3>
+                <div class="box-tools">
+                    <a href="@Url.Action("CreateDeTai","DeTai")" class="btn btn-default btn-sm"><i class="fa fa-user-plus"></i> Thêm</a>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="margin-top: -15px !important;">
+                <table class="table table-bordered table-hover dataTable">
+                    <tbody>
+                        <tr>
+                            <th>@Html.DisplayName("MaDeTai")</th>
+                            <th>@Html.DisplayName("TenDeTai")</th>
+                            <th>@Html.DisplayName("TacGia")</th>
+                            <th>@Html.DisplayName("TieuDe")</th>
+                            <th>@Html.DisplayName("ThoiGian")</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@Html.ActionLink(item.MaDeTai, "ThongTinDeTai", new { id = item.Id })</td>
+                            <td>@Html.ActionLink(item.TenDeTai, "ThongTinDeTai", new { id = item.Id })</td>
+                            <td>@Html.DisplayFor(modelItem => item.TacGia)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TieuDe)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ThoiGian)</td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditDeTai", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "DeleteDeTai", new { id = item.Id })
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+                @Html.PagedListPager(Model, page => Url.Action("DanhSachDeTai", "DeTai", new { page, pageSize = 10 }))
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+

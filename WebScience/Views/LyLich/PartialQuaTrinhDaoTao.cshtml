@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebScience.ViewData.ViewDaoTaoLyLich>
+
+@{
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <!-- Post -->
+            <div class="post">
+                <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="~/Content/dist/img/user1-128x128.jpg" alt="user image">
+                    <span class="username">
+                        <a>Trình Độ @item.TenBacDaoTao</a>
+                        <a class="pull-right btn-box-tool" href="@Url.Action("DeleteDaoTao", new { Id = item.Id, IdLyLich = item.IdLyLich })" onclick="return confirm('Anh/Chị muốn xóa dữ liệu này?');"><i class="fa fa-times"></i></a>
+                        <a class="pull-right btn-box-tool" href="@Url.Action("EditDaoTao", new { Id = item.Id, IdLyLich = item.IdLyLich, MaLyLich = item.MaLyLich})"><i class="fa fa-edit"></i></a>
+                    </span>
+                </div>
+                <!-- /.user-block -->
+                <h4><b>Nơi đào tạo :</b> @item.NoiDaoTao</h4>
+                <h4><b>Chuyên môn:</b> @item.ChuyenMon</h4>
+                <h4><b>Năm Tốt Nghiệp:</b> @item.NamTotNghiep</h4>
+   
+            </div>
+        }
+    }
+}
+
+
+<!-- /.post -->
+<form class="form-horizontal">
+    <div class="form-group margin-bottom-none">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary pull-right btn-block btn-sm" data-toggle="modal" data-target="#modal-daotao">Thêm</button>
+        </div>
+    </div>
+</form>
+<!-- Post -->
+<!-- /.post -->
+
+
+<div class="modal fade" id="modal-daotao">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Thêm mới thông tin đào tạo</h4>
+            </div>
+            <form action="@Url.Action("AddDaoTao")" data-otf-ajax="true" data-otf-target="#themmoidaotao" method="post">
+                <input type="hidden" id="MaLyLich" name="MaLyLich" value="@Model.FirstOrDefault().MaLyLich" />
+                <input type="hidden" id="IdLyLich" name="IdLyLich" value="@Model.FirstOrDefault().IdLyLich" />
+                <input type="hidden" id="Id" name="Id" value="@Model.FirstOrDefault().Id" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Bậc đào tạo:</label>
+                        @Html.DropDownList("MaBacDaoTao", new SelectList(ViewBag.HocVi, "MaHocVi", "TenHocVi"), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nơi đào tạo:</label>
+                        <input type="text" id="NoiDaoTao" name="NoiDaoTao" required oninvalid="this.setCustomValidity('Vui lòng nhập nơi đào tạo!')" oninput="setCustomValidity('')" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Chuyên môn:</label>
+                        <input type="text" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập chuyên môn!')" oninput="setCustomValidity('')" id="ChuyenMon" name="ChuyenMon">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Năm đào tạo:</label>
+                        <input type="text" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập năm tốt nghiệp!')" oninput="setCustomValidity('')" id="NamTotNghiep" name="NamTotNghiep">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
