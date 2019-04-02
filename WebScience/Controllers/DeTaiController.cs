@@ -27,12 +27,6 @@ namespace WebScience.Controllers
             return View(vm.ToPagedList(page, pageSize));
         }
 
-        //public ActionResult PartialThongTinDeTai(string MaDeTai)
-        //{
-        //    var model = unitOfWork.DeTaiRepository.Get(x => x.MaDeTai == MaDeTai).FirstOrDefault();
-        //    return PartialView(model);
-        //}
-
         public ActionResult CreateDeTai()
         {
             var vm = new tb_DeTai();
@@ -54,7 +48,7 @@ namespace WebScience.Controllers
 
         public ActionResult EditDeTai(int id)
         {
-            var vm = unitOfWork.DeTaiRepository.GetByID(id);
+            var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == id).FirstOrDefault();
             return View(vm);
         }
 
@@ -73,14 +67,16 @@ namespace WebScience.Controllers
 
         public ActionResult DeleteDeTai(int id)
         {
-            unitOfWork.DeTaiRepository.Delete(id);
+            var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == id).FirstOrDefault();
+            unitOfWork.DeTaiRepository.Delete(vm);
             unitOfWork.Save();
             return RedirectToAction(nameof(DanhSachDeTai));
         }
 
         public ActionResult ThongTinDeTai(int id)
         {
-            return View();
+            var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == id).FirstOrDefault();
+            return View(vm);
         }
     }
 }
