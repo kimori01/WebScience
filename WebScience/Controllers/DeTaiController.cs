@@ -1,7 +1,9 @@
 ﻿using PagedList;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using WebScience.Models;
 using WebScience.ViewData;
@@ -31,6 +33,12 @@ namespace WebScience.Controllers
         {
             var vm = new tb_DeTai();
             return View(vm);
+        }
+
+        public JsonResult TimKiemLyLich(string table_search)
+        {
+            var vm = unitOfWork.LyLichRepository.Get().Where(x => table_search == null || x.MaLyLich.StartsWith(table_search) || x.HoVaTen.StartsWith(table_search)).OrderByDescending(r => r.Id);
+            return Json(vm, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -78,5 +86,34 @@ namespace WebScience.Controllers
             var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == id).FirstOrDefault();
             return View(vm);
         }
+
+        [HttpPost]
+        public ActionResult UpdateFile(HttpPostedFileBase file, int Id)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Content/files"), Path.GetFileName(file.FileName));
+                    var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == Id).FirstOrDefault();
+                    vm.FileName = path;
+                    unitOfWork.DeTaiRepository.Update(vm);
+                    unitOfWork.Save();
+                    file.SaveAs(path);
+
+                    return RedirectToAction(nameof(ThongTinDeTai), new { Id = Id });
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                }
+            }
+            else
+            {
+                ViewBag.Message = "You have not specified a file.";
+            }
+            return View();
+        }
+        
     }
 }

@@ -15,7 +15,6 @@
                 </ul>
                 <div class="tab-content">
                     <div class="active tab-pane" id="activity">
-                        <form role="form">
                             <div class="box-body">
                                 <!-- info row -->
                                 <div class="row">
@@ -70,21 +69,45 @@
                                             @Html.ValidationMessageFor(model => model.NoiApDung, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
-                                            @Html.LabelFor(model => model.GhiChu)
-                                            @Html.TextBoxFor(model => model.GhiChu, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+                                            @Html.LabelFor(model => model.NoiDung)
+                                            @Html.TextBoxFor(model => model.NoiDung, new { @class = "form-control", @readonly = "readonly" })
+                                            @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.FileName)
+                                            <div class="input-group">
+                                                <input type="text" id="FileName" readonly="readonly" value="@Model.FileName" name="FileName" class="form-control">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-cloud-download"></i>
+                                                    Tải về
+                                                </div>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <!-- /.row -->
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                @using (Html.BeginForm("UpdateFile", "DeTai", new { Id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @ViewBag.Message
+                                            <label for="exampleInputFile">File Đề Tài</label>
+                                            <input type="file" name="file" id="file">
+                                            <p class="help-block">Chọn file đề tài để lưu ở đây.</p>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                                    </div>
+                                }
                             </div>
-                        </form>
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="timeline">

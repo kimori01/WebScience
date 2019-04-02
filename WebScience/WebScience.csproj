@@ -7392,9 +7392,11 @@
     <Content Include="Views\DeTai\EditDeTai.cshtml" />
     <Content Include="Views\DeTai\ThongTinDeTai.cshtml" />
     <Content Include="Views\DeTai\PartialThongTinDeTai.cshtml" />
+    <Content Include="Views\Shared\PartialTimKiemLyLich.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\files\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\TaiKhoan\" />
   </ItemGroup>

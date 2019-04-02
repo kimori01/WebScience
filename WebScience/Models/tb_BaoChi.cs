@@ -6,7 +6,7 @@ using System.Data.Entity.Spatial;
 
 namespace WebScience.Models
 {
-    public class tb_DeTai
+    public class tb_BaoChi
     {
         [Key]
         [Column(Order = 0)]
@@ -16,31 +16,37 @@ namespace WebScience.Models
         [Key]
         [Column(Order = 1)]
         [StringLength(50)]
-        [Required(ErrorMessage = "Vui lòng nhập mã đề tài")]
+        [Required(ErrorMessage = "Vui lòng nhập mã báo chí")]
         [Display(Name = "Mã Đề Tài")]
-        public string MaDeTai { get; set; }
+        public string MaBaoChi { get; set; }
 
         [StringLength(250)]
-        [Required(ErrorMessage = "Vui lòng nhập tên đề tài")]
-        public string TenDeTai { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập tên báo chí")]
+        public string TenBaoChi { get; set; }
 
         [StringLength(250)]
         [Required(ErrorMessage = "Vui lòng nhập tiêu đề")]
-        public string TieuDe { get; set; }
+        public string TieuDeBaoChi { get; set; }
 
         [StringLength(500)]
-        public string NoiDung { get; set; }
-
-        [StringLength(50)]
-        [Required(ErrorMessage = "Vui lòng chọn tác giả")]
-        public string TacGia { get; set; }
+        public string NoiDungBaoChi { get; set; }
 
         public string IdMaLyLich { get; set; }
 
+        [StringLength(50)]
+        [Required(ErrorMessage = "Vui lòng chọn tác giả")]
+        public string TacGiaBaoChi { get; set; }
+
+        public string IdMaDeTai { get; set; }
+
+        [StringLength(50)]
+        [Required(ErrorMessage = "Vui lòng chọn đề tài")]
+        public string TenDeTai { get; set; }
+
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn ngày công bố")]
-        [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu công bố")]
-        public DateTime? NgayCongBo { get; set; }
+        [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày tháng")]
+        public DateTime? NgayXuatBan { get; set; }
 
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn ngày đăng ký")]
