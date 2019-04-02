@@ -44,20 +44,9 @@ namespace WebScience.Models
         public string TenDeTai { get; set; }
 
         [Column(TypeName = "smalldatetime")]
-        [Required(ErrorMessage = "Vui lòng chọn ngày công bố")]
+        [Required(ErrorMessage = "Vui lòng chọn ngày xuất bản")]
         [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày tháng")]
         public DateTime? NgayXuatBan { get; set; }
-
-        [Column(TypeName = "smalldatetime")]
-        [Required(ErrorMessage = "Vui lòng chọn ngày đăng ký")]
-        [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày đăng ký")]
-        public DateTime? NgayDangKy { get; set; }
-
-        [StringLength(50)]
-        public string QuyMo { get; set; }
-
-        [StringLength(500)]
-        public string NoiApDung { get; set; }
 
         [StringLength(500)]
         public string ThoiGian { get; set; }
