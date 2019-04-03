@@ -71,7 +71,7 @@ namespace WebScience.Controllers
             listItems.Add(new SelectListItem { Text = "Nữ", Value = "Nữ" });
             ViewBag.GioiTinh = listItems;
 
-            var vm = unitOfWork.LyLichRepository.GetByID(id);
+            var vm = unitOfWork.LyLichRepository.Get(x => x.Id == id).FirstOrDefault();
             return View(vm);
         }
 

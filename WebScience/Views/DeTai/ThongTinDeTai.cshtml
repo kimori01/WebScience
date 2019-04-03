@@ -1,4 +1,5 @@
-﻿@model WebScience.Models.tb_DeTai
+﻿@using WebScience.Models;
+@model WebScience.Models.tb_DeTai
 @{
     ViewBag.Title = "ThongTinDeTai";
 }
@@ -9,256 +10,221 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#activity" data-toggle="tab">Thông tin đề tài</a></li>
-                    <li><a href="#timeline" data-toggle="tab">Đồng tác giả</a></li>
-                    <li><a href="#settings" data-toggle="tab">Bài báo</a></li>
+                    <li class="active"><a href="#thongtindetai" data-toggle="tab">Thông tin đề tài</a></li>
+                    <li><a href="#dongtacgia" data-toggle="tab">Đồng tác giả</a></li>
+                    <li><a href="#baibao" data-toggle="tab">Bài báo</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="active tab-pane" id="activity">
-                            <div class="box-body">
-                                <!-- info row -->
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.MaDeTai)
-                                            @Html.TextBoxFor(model => model.MaDeTai, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.MaDeTai, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.TacGia)
-                                            @Html.TextBoxFor(model => model.TacGia, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.NgayCongBo)
-                                            @Html.TextBoxFor(model => model.NgayCongBo, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.NgayCongBo, "", new { @class = "text-danger" })
-                                        </div>
+                    <div class="active tab-pane" id="thongtindetai">
+                        <div class="box-body">
+                            <!-- info row -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MaDeTai)
+                                        @Html.TextBoxFor(model => model.MaDeTai, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.MaDeTai, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.TenDeTai)
-                                            @Html.TextBoxFor(model => model.TenDeTai, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.TenDeTai, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.QuyMo)
-                                            @Html.TextBoxFor(model => model.QuyMo, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.QuyMo, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.NgayDangKy)
-                                            @Html.TextBoxFor(model => model.NgayDangKy, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.NgayDangKy, "", new { @class = "text-danger" })
-                                        </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TacGia)
+                                        @Html.TextBoxFor(model => model.TacGia, new { @id = "TenTacGia", @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.TieuDe)
-                                            @Html.TextBoxFor(model => model.TieuDe, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.ThoiGian)
-                                            @Html.TextBoxFor(model => model.ThoiGian, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.ThoiGian, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.NoiApDung)
-                                            @Html.TextBoxFor(model => model.NoiApDung, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.NoiApDung, "", new { @class = "text-danger" })
-                                        </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NgayCongBo)
+                                        @Html.TextBoxFor(model => model.NgayCongBo, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.NgayCongBo, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.NoiDung)
-                                            @Html.TextBoxFor(model => model.NoiDung, new { @class = "form-control", @readonly = "readonly" })
-                                            @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TenDeTai)
+                                        @Html.TextBoxFor(model => model.TenDeTai, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.TenDeTai, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.FileName)
-                                            <div class="input-group">
-                                                <input type="text" id="FileName" readonly="readonly" value="@Model.FileName" name="FileName" class="form-control">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-cloud-download"></i>
-                                                    Tải về
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.QuyMo)
+                                        @Html.TextBoxFor(model => model.QuyMo, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.QuyMo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NgayDangKy)
+                                        @Html.TextBoxFor(model => model.NgayDangKy, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.NgayDangKy, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TieuDe)
+                                        @Html.TextBoxFor(model => model.TieuDe, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ThoiGian)
+                                        @Html.TextBoxFor(model => model.ThoiGian, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.ThoiGian, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NoiApDung)
+                                        @Html.TextBoxFor(model => model.NoiApDung, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.NoiApDung, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NoiDung)
+                                        @Html.TextBoxFor(model => model.NoiDung, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FileName)
+                                        <div class="input-group">
+                                            <input type="text" id="FileName" readonly="readonly" value="@Model.FileName" name="FileName" class="form-control">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-cloud-download"></i>
+                                                Tải về
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            @using (Html.BeginForm("UpdateFile", "DeTai", new { Id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @ViewBag.Message
+                                        <label for="exampleInputFile">File Đề Tài</label>
+                                        <input type="file" name="file" id="file">
+                                        <p class="help-block">Chọn file đề tài để lưu ở đây.</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="dongtacgia">
+                        <div class="box box-primary">
+                            <form method="post" id="fromdongtacgia" action="@Url.Action("CreateDongTacGia")" data-otf-ajax="true" data-otf-target="#danhsachdongtacgia">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Thêm Mới Đồng Tác Giả</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+                                        <input type="hidden" id="IdMaDeTai" name="IdMaDeTai" value="@Model.Id" class="form-control">
+                                        <input type="hidden" id="MaDeTai" name="MaDeTai" value="@Model.MaDeTai" class="form-control">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tên Đồng Tác Giả</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="TenDongTacGia" readonly="readonly" class="form-control" name="TenDongTacGia">
+                                                    <input type="hidden" id="IdMaLyLich" name="IdMaLyLich" class="form-control">
+                                                    <div class="input-group-addon" data-toggle="modal" data-target="#modal-default">
+                                                        <i class="fa fa-edit"></i>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Ngày Tham Gia</label>
+                                                <input type="text" class="form-control" id="NgayThamGia" name="NgayThamGia">
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
-                                <!-- /.row -->
+                                <!-- /.box-body -->
+                                <div class="box-footer clearfix">
+                                    <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- / -->
+
+                        @Html.Partial("PartialDanhSachDongTacGia", ViewData["DongTacGia"])
+
+                    </div>
+                    <!-- /.tab-pane -->
+
+                    <div class="tab-pane" id="baibao">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Danh Sách Bài Báo</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Task</th>
+                                            <th>Progress</th>
+                                            <th style="width: 40px">Label</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>Update software</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-red">55%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Clean database</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-yellow">70%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Cron job running</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-blue">30%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Fix and squish bugs</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-green">90%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- /.box-body -->
-                            <div class="box-footer">
-                                @using (Html.BeginForm("UpdateFile", "DeTai", new { Id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            @ViewBag.Message
-                                            <label for="exampleInputFile">File Đề Tài</label>
-                                            <input type="file" name="file" id="file">
-                                            <p class="help-block">Chọn file đề tài để lưu ở đây.</p>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                                    </div>
-                                }
+                            <div class="box-footer clearfix">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li><a href="#">«</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
                             </div>
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="timeline">
-                        <!-- The timeline -->
-                        <ul class="timeline timeline-inverse">
-                            <!-- timeline time label -->
-                            <li class="time-label">
-                                <span class="bg-red">
-                                    10 Feb. 2014
-                                </span>
-                            </li>
-                            <!-- /.timeline-label -->
-                            <!-- timeline item -->
-                            <li>
-                                <i class="fa fa-envelope bg-blue"></i>
-
-                                <div class="timeline-item">
-                                    <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                                    <div class="timeline-body">
-                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                        quora plaxo ideeli hulu weebly balihoo...
-                                    </div>
-                                    <div class="timeline-footer">
-                                        <a class="btn btn-primary btn-xs">Read more</a>
-                                        <a class="btn btn-danger btn-xs">Delete</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <li>
-                                <i class="fa fa-user bg-aqua"></i>
-
-                                <div class="timeline-item">
-                                    <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                                    <h3 class="timeline-header no-border">
-                                        <a href="#">Sarah Young</a> accepted your friend request
-                                    </h3>
-                                </div>
-                            </li>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <li>
-                                <i class="fa fa-comments bg-yellow"></i>
-
-                                <div class="timeline-item">
-                                    <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                    <div class="timeline-body">
-                                        Take me to your leader!
-                                        Switzerland is small and neutral!
-                                        We are more like Germany, ambitious and misunderstood!
-                                    </div>
-                                    <div class="timeline-footer">
-                                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- END timeline item -->
-                            <!-- timeline time label -->
-                            <li class="time-label">
-                                <span class="bg-green">
-                                    3 Jan. 2014
-                                </span>
-                            </li>
-                            <!-- /.timeline-label -->
-                            <!-- timeline item -->
-                            <li>
-                                <i class="fa fa-camera bg-purple"></i>
-
-                                <div class="timeline-item">
-                                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                    <div class="timeline-body">
-                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- END timeline item -->
-                            <li>
-                                <i class="fa fa-clock-o bg-gray"></i>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.tab-pane -->
-
-                    <div class="tab-pane" id="settings">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputName" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">Submit</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                     <!-- /.tab-pane -->
                 </div>
@@ -272,3 +238,43 @@
 
 </section>
 
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Tìm Kiếm Tác Giả</h5>
+            </div>
+            <div class="modal-body">
+                <div class="input-group input-group-sm" style="width: 100%;">
+                    <input type="text" id="table_search" class="form-control pull-right" placeholder="Tìm kiếm">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default" onclick="seachData($('#table_search').val())"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="myTable" class="table table-bordered table-hover dataTable">
+                            <tbody class="tbody"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert(@TempData["Message"].ToString());
+            };
+    </script>
+}

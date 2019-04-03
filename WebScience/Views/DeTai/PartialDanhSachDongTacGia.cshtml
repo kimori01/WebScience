@@ -1,0 +1,31 @@
+﻿@using WebScience.Models;
+@model IEnumerable<tb_DongTacGia>
+<div id="danhsachdongtacgia" class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Danh Sách Đồng Tác Giả</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>@Html.DisplayName("Mã Lý Lịch")</th>
+                    <th>@Html.DisplayName("Tên Đồng Tác Giả")</th>
+                    <th>@Html.DisplayName("Ngày Tham Gia")</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.IdMaLyLich)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TenDongTacGia)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NgayThamGia)</td>
+                        <td>
+                            @Html.ActionLink("Xóa", "DeleteDongTacGia", new { IdMaLyLich = item.IdMaLyLich, IdMaDeTai = item.IdMaDeTai })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

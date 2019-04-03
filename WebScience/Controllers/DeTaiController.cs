@@ -37,8 +37,16 @@ namespace WebScience.Controllers
 
         public JsonResult TimKiemLyLich(string table_search)
         {
-            var vm = unitOfWork.LyLichRepository.Get().Where(x => table_search == null || x.MaLyLich.StartsWith(table_search) || x.HoVaTen.StartsWith(table_search)).OrderByDescending(r => r.Id);
-            return Json(vm, JsonRequestBehavior.AllowGet);
+            if(!string.IsNullOrEmpty(table_search))
+            {
+                var vm = unitOfWork.LyLichRepository.Get().Where(x => table_search == null || x.MaLyLich.StartsWith(table_search) || x.HoVaTen.StartsWith(table_search)).OrderByDescending(r => r.Id);
+                return Json(vm, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var vm = new List<tb_LyLich>();
+                return Json(vm.ToList(), JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
@@ -84,7 +92,48 @@ namespace WebScience.Controllers
         public ActionResult ThongTinDeTai(int id)
         {
             var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == id).FirstOrDefault();
+            ViewData["DongTacGia"] = unitOfWork.DongTacGiaRepository.Get(x => x.IdMaDeTai == id.ToString());
+            ViewData["BaoChi"] = unitOfWork.BaoChiRepository.Get(x => x.IdMaDeTai == id.ToString());
             return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult CreateDongTacGia(FormCollection model)
+        {
+            var vm = new tb_DongTacGia();
+            vm.IdMaLyLich = Request.Form["IdMaLyLich"];
+            vm.TenDongTacGia = Request.Form["TenDongTacGia"];
+            vm.MaDeTai = Request.Form["MaDeTai"];
+            vm.IdMaDeTai = Request.Form["IdMaDeTai"];
+            vm.NgayThamGia = DateTime.Parse(Request.Form["NgayThamGia"].ToString());
+            vm.GhiChu = string.Empty;
+
+            var countdongtacgia = unitOfWork.DongTacGiaRepository.Get(x => x.IdMaLyLich == vm.IdMaLyLich);
+            if (countdongtacgia.Count() > 0)
+            {
+                TempData["Message"] = "Đồng tác giả này đã có trong hệ thống!";
+                return RedirectToAction(nameof(ThongTinDeTai), new { id = vm.IdMaDeTai });
+            }
+            var countlylich = unitOfWork.LyLichRepository.Get(x => x.Id == int.Parse(vm.IdMaLyLich));
+            if (countlylich.Count() > 0)
+            {
+                TempData["Message"] = "Đồng tác giả này là tác giả của đề tài!";
+                return RedirectToAction(nameof(ThongTinDeTai), new { id = vm.IdMaDeTai });
+            }
+
+            unitOfWork.DongTacGiaRepository.Insert(vm);
+            unitOfWork.Save();
+            return RedirectToAction(nameof(ThongTinDeTai), new { id = vm.IdMaDeTai });
+        }
+
+        public ActionResult DeleteDongTacGia(string IdMaLyLich, string IdMaDeTai)
+        {
+            var vm = unitOfWork.DongTacGiaRepository.Get(x => x.IdMaLyLich == IdMaLyLich.ToString() && x.IdMaDeTai == IdMaDeTai);
+            unitOfWork.DongTacGiaRepository.Delete(vm);
+            unitOfWork.Save();
+   
+
+            return RedirectToAction(nameof(ThongTinDeTai), new { id = IdMaDeTai });
         }
 
         [HttpPost]
@@ -96,7 +145,8 @@ namespace WebScience.Controllers
                 {
                     string path = Path.Combine(Server.MapPath("~/Content/files"), Path.GetFileName(file.FileName));
                     var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == Id).FirstOrDefault();
-                    vm.FileName = path;
+                    vm.Path = path;
+                    vm.FileName = file.FileName;
                     unitOfWork.DeTaiRepository.Update(vm);
                     unitOfWork.Save();
                     file.SaveAs(path);

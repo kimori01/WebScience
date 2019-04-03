@@ -20,6 +20,8 @@ namespace WebScience.Models
         public virtual DbSet<tb_ToChuc> tb_ToChuc { get; set; }
         public virtual DbSet<tb_UserProfile> tb_UserProfile { get; set; }
         public virtual DbSet<tb_DeTai> tb_DeTai { get; set; }
+        public virtual DbSet<tb_BaoChi> tb_BaoChi { get; set; }
+        public virtual DbSet<tb_DongTacGia> tb_DongTacGia { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

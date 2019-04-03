@@ -54,6 +54,7 @@ namespace WebScience
                     "~/Content/bower_components/font-awesome/css/font-awesome.min.css",
                     "~/Content/bower_components/Ionicons/css/ionicons.min.css",
                     "~/Content/dist/css/AdminLTE.min.css",
+                    "~/Content/dist/css/science.css",
                     "~/Content/dist/css/skins/_all-skins.min.css",
                     "~/Content/bower_components/morris.js/morris.css",
                     "~/Content/bower_components/jvectormap/jquery-jvectormap.css",
