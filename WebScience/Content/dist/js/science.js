@@ -103,16 +103,4 @@ function ShowMessage(message, messagetype) {
     }, 5000);//5000=5 seconds
 }
 
-//$('#fromdongtacgia').validate({
-//    rules: {
-//        TenDongTacGia: {
-//            required: true,
-//            messages: "Vui lòng chọn tên đồng tác giả!"
-//        },
-//        TenDongTacGia: {
-//            required: true,
-//            messages: "Vui lòng chọn ngày tham gia!"
-//        }
-//    }
-//});
 
