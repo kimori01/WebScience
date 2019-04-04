@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<WebScience.Models.tb_BaoChi>
+@using PagedList.Mvc;
+
+<div class="row" id="danhsachbaochi">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh Sách Báo Chí</h3>
+                <div class="box-tools">
+                    <a href="@Url.Action("CreateBaoChi","BaoChi")" class="btn btn-default btn-sm"><i class="fa fa-user-plus"></i> Thêm</a>
+                    <a href="@Url.Action("BaoCaoLyLich","BaoChi")" class="btn btn-default btn-sm"><i class="fa fa-user-plus"></i> In Du Lieu</a>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="margin-top: -15px !important;">
+                <table class="table table-bordered table-hover dataTable">
+                    <tbody>
+                        <tr>
+                            <th>@Html.DisplayName("MaBaoChi")</th>
+                            <th>@Html.DisplayName("TenBaoChi")</th>
+                            <th>@Html.DisplayName("TieuDeBaoChi")</th>
+                            <th>@Html.DisplayName("TacGiaBaoChi")</th>
+                            <th>@Html.DisplayName("NgayXuatBan")</th>
+
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(item.MaBaoChi, "ThongTinLyLich", new { id = item.Id })</td>
+                                <td>@Html.ActionLink(item.TenBaoChi, "ThongTinLyLich", new { id = item.Id })</td>
+                                <td>@Html.DisplayFor(modelItem => item.TieuDeBaoChi)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TacGiaBaoChi)</td>
+                                <td>@Html.DisplayFor(modelItem => item.NgayXuatBan)</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditBaoChi", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "DeleteBaoChi", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+                @Html.PagedListPager(Model, page => Url.Action("DanhSachBaoChi", "BaoChi", new { page, pageSize = 10 }))
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

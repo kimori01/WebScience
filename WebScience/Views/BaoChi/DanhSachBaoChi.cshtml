@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebScience.Models.tb_BaoChi>
+@{
+    ViewBag.Title = "DanhSachBaoChi";
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body">
+                    <form method="get" action="@Url.Action("DanhSachBaoChi")" data-otf-ajax="true" data-otf-target="#danhsachbaochi">
+                        <div class="input-group input-group-sm" style="width: 100%;">
+                            <input type="search" name="table_search" class="form-control pull-right" placeholder="Tìm kiếm">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("PartialDanhSachBaoChi", Model)
+    <!-- /.row -->
+</section>
+
+
+
+
+

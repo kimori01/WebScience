@@ -12,6 +12,7 @@ namespace WebScience
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");
 
             routes.MapRoute(
                 name: "Default",
@@ -21,5 +22,7 @@ namespace WebScience
 
             );
         }
+
+
     }
 }

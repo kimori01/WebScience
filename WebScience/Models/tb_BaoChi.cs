@@ -17,7 +17,7 @@ namespace WebScience.Models
         [Column(Order = 1)]
         [StringLength(50)]
         [Required(ErrorMessage = "Vui lòng nhập mã báo chí")]
-        [Display(Name = "Mã Đề Tài")]
+        [Display(Name = "Mã Báo Chí")]
         public string MaBaoChi { get; set; }
 
         [StringLength(250)]

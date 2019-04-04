@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web.Mvc;
 using WebScience.Models;
 using WebScience.ViewData;
+using DevExpress.Web.Mvc;
 
 namespace WebScience.Controllers
 {
     public class LyLichController : Controller
     {
         private UnitOfWork.UnitOfWork unitOfWork = new UnitOfWork.UnitOfWork();
+        WebScience.Reports.XtraReport1 report = new WebScience.Reports.XtraReport1();
         public ActionResult Index()
         {
             return RedirectToAction(nameof(DanhSachLyLich));
@@ -19,15 +21,6 @@ namespace WebScience.Controllers
         // GET: LyLich
         public ActionResult DanhSachLyLich(string table_search, int page = 1, int pageSize = 10)
         {
-            //ViewBag.PageSize = new List<SelectListItem>()
-            // {
-            //     new SelectListItem() { Value="5", Text= "5" },
-            //     new SelectListItem() { Value="10", Text= "10" },
-            //     new SelectListItem() { Value="15", Text= "15" },
-            //     new SelectListItem() { Value="25", Text= "25" },
-            //     new SelectListItem() { Value="50", Text= "50" },
-            // };
-
             var vm = unitOfWork.LyLichRepository.Get().Where(x => table_search == null || x.MaLyLich.StartsWith(table_search) || x.HoVaTen.StartsWith(table_search)).OrderByDescending(r => r.Id);
 
             if (Request.IsAjaxRequest())
@@ -366,5 +359,23 @@ namespace WebScience.Controllers
             viewLyLich.Email = _LyLich.Email;
             return viewLyLich;
         }
+
+        public ActionResult BaoCaoLyLich()
+        {
+            ViewData["Report"] = new WebScience.Reports.XtraReport1();
+            return View();
+        }
+
+        public ActionResult DocumentViewerPartial()
+        {
+            report.DataSource = unitOfWork.LyLichRepository.Get();
+            return PartialView("DocumentViewerPartial", report);
+        }
+
+        public ActionResult DocumentViewerPartialExport()
+        {
+            return DocumentViewerExtension.ExportTo(report, Request);
+        }
+
     }
 }
