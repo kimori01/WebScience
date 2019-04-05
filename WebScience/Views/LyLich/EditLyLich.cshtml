@@ -21,8 +21,7 @@
                     </div>
                 </div>
                 <!-- /.box-header -->
-                @using (Html.BeginForm())
-                {
+                <form action="@Url.Action("EditLyLich")" data-otf-ajax="true" method="post">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.Id)
@@ -110,7 +109,7 @@
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
-                }
+                </form>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 $("#NgayDangKy").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
 $("#NgayCongBo").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
 $("#NgayThamGia").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
+$("#NgayXuatBan").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
 
 $(function () {
     var ajaxFromSubmit = function (e) {
@@ -72,6 +73,52 @@ $(document).ready(function () {
         $("#IdMaLyLich").val(col1);
     });
 });
+
+//Load Data function
+function seachDeTai(table_search) {
+    $.ajax({
+        url: "/DeTai/TimKiemDeTai?table_search=" + table_search + "",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var html = '';
+            html += '<tr>';
+            html += '<th>Mã Đề Tài</th>';
+            html += '<th>Tên Đề Tài</th>';
+            html += '<th>Tác Giả</th>';
+            html += '<th></th>';
+            html += '</tr>';
+            $.each(result, function (key, item) {
+                html += '<tr>';
+                html += '<td class="nr">' + item.MaDeTai + '</td>';
+                html += '<td>' + item.TenDeTai + '</td>';
+                html += '<td>' + item.TacGia + '</td>';
+                html += '<td><button type="button" class="btn btn-block btn-default btn-sm btnSelect" data-dismiss="modal">Chọn</button></td>';
+                html += '</tr>';
+            });
+            $('.tbody').html(html);
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+$(document).ready(function () {
+    // code to read selected table row cell data (values).
+    $("#myTableDeTai").on('click', '.btnSelect', function () {
+        // get the current row
+        var currentRow = $(this).closest("tr");
+        var col1 = currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+        var col2 = currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+        var col3 = currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+
+        $("#IdMaDeTai").val(col1);
+        $("#TenDeTai").val(col2);
+    });
+});
+
 
 $(document).ready(function () {
     $("#fromdongtacgia").validate(); //IE10 doesn't recognize the method

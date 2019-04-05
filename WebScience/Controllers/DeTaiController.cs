@@ -49,6 +49,22 @@ namespace WebScience.Controllers
             }
         }
 
+        public JsonResult TimKiemDeTai(string table_search)
+        {
+            if (!string.IsNullOrEmpty(table_search))
+            {
+                var vm = unitOfWork.DeTaiRepository.Get().Where(x => table_search == null 
+                || x.MaDeTai.StartsWith(table_search)
+                || x.TenDeTai.StartsWith(table_search)).OrderByDescending(r => r.Id);
+                return Json(vm, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var vm = new List<tb_DeTai>();
+                return Json(vm.ToList(), JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateDeTai(tb_DeTai model)
@@ -93,7 +109,7 @@ namespace WebScience.Controllers
         {
             var vm = unitOfWork.DeTaiRepository.Get(x => x.Id == id).FirstOrDefault();
             ViewData["DongTacGia"] = unitOfWork.DongTacGiaRepository.Get(x => x.IdMaDeTai == id.ToString());
-            ViewData["BaoChi"] = unitOfWork.BaoChiRepository.Get(x => x.IdMaDeTai == id.ToString());
+            ViewData["BaoChi"] = unitOfWork.BaoChiRepository.Get(x => x.IdMaDeTai == vm.MaDeTai);
             return View(vm);
         }
 

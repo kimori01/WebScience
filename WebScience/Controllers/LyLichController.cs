@@ -192,7 +192,6 @@ namespace WebScience.Controllers
             return RedirectToAction("ThongTinLyLich", new { Id = IdLyLich });
         }
 
-
         public ActionResult PartialQuaTrinhCongTac(List<ViewCongTacLyLich> model)
         {
             return View(model);
@@ -376,6 +375,6 @@ namespace WebScience.Controllers
         {
             return DocumentViewerExtension.ExportTo(report, Request);
         }
-
+     
     }
 }

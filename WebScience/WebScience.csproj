@@ -312,6 +312,12 @@
     <Compile Include="Reports\XtraReport1.Designer.cs">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\XtraReport_LyLichKhoaHoc.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XtraReport_LyLichKhoaHoc.Designer.cs">
+      <DependentUpon>XtraReport_LyLichKhoaHoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork\GenericRepository.cs" />
     <Compile Include="UnitOfWork\Interface\IGenericRepository.cs" />
     <Compile Include="UnitOfWork\Interface\IUnitOfWork.cs" />
@@ -7559,6 +7565,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\XtraReport1.resx">
       <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XtraReport_LyLichKhoaHoc.resx">
+      <DependentUpon>XtraReport_LyLichKhoaHoc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

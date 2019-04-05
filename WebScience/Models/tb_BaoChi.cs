@@ -49,14 +49,13 @@ namespace WebScience.Models
         public DateTime? NgayXuatBan { get; set; }
 
         [StringLength(500)]
-        public string ThoiGian { get; set; }
-
-        [StringLength(500)]
         public string GhiChu { get; set; }
 
         [StringLength(500)]
         public string FileName { get; set; }
 
-
+        [StringLength(500)]
+        public string Path { get; set; }
+        
     }
 }
