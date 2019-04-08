@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebScience.Models.tb_NhiemVu>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box-tools pull-left" style="padding-bottom: 10px;">
+            <button type="button" class="btn btn-block btn-default btn-sm" data-toggle="modal" data-target="#modal-nhiemvu">Thêm</button>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Mã Nhiệm Vụ</th>
+                    <th>Tên Nhiệm Vụ</th>
+                    <th>Thời Gian Bắt Đầu</th>
+                    <th>Thời Gian Kết Thúc</th>
+                    <th style="width: 40px"></th>
+                </tr>
+                @if (Model.FirstOrDefault().Id != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.MaNhiemVu)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TenNhiemVu)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ThoiGianBD)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ThoiGianKT)</td>
+                            <td><button class="btn btn-default btn-sm">Xóa</button></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-nhiemvu">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Thêm mới nhiệm vụ</h4>
+            </div>
+            <form action="@Url.Action("AddNhiemVu")" data-otf-ajax="true" data-otf-target="#themmoinhiemvu" method="post">
+                <input type="hidden" id="IdMaLyLich" name="IdMaLyLich" value="@Model.FirstOrDefault().IdMaLyLich" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Mã Nhiệm Vụ:</label>
+                        <input type="text" id="MaNhiemVu" name="MaNhiemVu" required oninvalid="this.setCustomValidity('Vui lòng nhập mã nhiệm vụ!')" oninput="setCustomValidity('')" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tên Nhiệm Vụ:</label>
+                        <input type="text" id="TenNhiemVu" name="TenNhiemVu" required oninvalid="this.setCustomValidity('Vui lòng nhập tên nhiệm vụ!')" oninput="setCustomValidity('')" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Thời Gian Bắt Đầu:</label>
+                        <input type="date" id="ThoiGianBD" name="ThoiGianBD" style="line-height: 1 !important;" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Thời Gian Kết Thúc:</label>
+                        <input type="date" id="ThoiGianKT" name="ThoiGianKT" style="line-height: 1 !important;" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Chương Trình:</label>
+                        <input type="text" id="ChuongTrinh" name="ChuongTrinh" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tình Trạng:</label>
+                        <input type="text" id="TinhTrang" name="TinhTrang" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

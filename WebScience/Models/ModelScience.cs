@@ -22,6 +22,9 @@ namespace WebScience.Models
         public virtual DbSet<tb_DeTai> tb_DeTai { get; set; }
         public virtual DbSet<tb_BaoChi> tb_BaoChi { get; set; }
         public virtual DbSet<tb_DongTacGia> tb_DongTacGia { get; set; }
+        public virtual DbSet<tb_VanBang> tb_VanBang { get; set; }
+        public virtual DbSet<tb_NhiemVu> tb_NhiemVu { get; set; }
+        public virtual DbSet<tb_GiaiThuong> tb_GiaiThuong { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

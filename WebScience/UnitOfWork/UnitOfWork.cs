@@ -21,7 +21,47 @@ namespace WebScience.UnitOfWork
         private GenericRepository<tb_DeTai> _detaiRepository;
         private GenericRepository<tb_BaoChi> _baochiRepository;
         private GenericRepository<tb_DongTacGia> _dongtacgiaRepository;
+        private GenericRepository<tb_VanBang> _vanbangRepository;
+        private GenericRepository<tb_NhiemVu> _nhiemvuRepository;
+        private GenericRepository<tb_GiaiThuong> _giaithuongRepository;
 
+        public GenericRepository<tb_GiaiThuong> GiaiThuongRepository
+        {
+            get
+            {
+                if (this._giaithuongRepository == null)
+                {
+                    this._giaithuongRepository = new GenericRepository<tb_GiaiThuong>(context);
+                }
+                return _giaithuongRepository;
+            }
+        }
+
+        public GenericRepository<tb_NhiemVu> NhiemVuRepository
+        {
+            get
+            {
+                if (this._nhiemvuRepository == null)
+                {
+                    this._nhiemvuRepository = new GenericRepository<tb_NhiemVu>(context);
+                }
+                return _nhiemvuRepository;
+            }
+        }
+
+        public GenericRepository<tb_VanBang> VanBangRepository
+        {
+            get
+            {
+                if (this._vanbangRepository == null)
+                {
+                    this._vanbangRepository = new GenericRepository<tb_VanBang>(context);
+                }
+                return _vanbangRepository;
+            }
+        }
+
+    
         public GenericRepository<tb_DongTacGia> DongTacGiaRepository
         {
             get

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebScience.Models.tb_GiaiThuong>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box-tools pull-left" style="padding-bottom: 10px;">
+            <button type="button" class="btn btn-block btn-default btn-sm" data-toggle="modal" data-target="#modal-giaithuong">Thêm</button>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Mã Giải Thưởng</th>
+                    <th>Tên Giải Thưởng</th>
+                    <th>Hình Thức</th>
+                    <th>Năm Tăng Thưởng</th>
+                    <th style="width: 40px"></th>
+                </tr>
+                @if (Model.FirstOrDefault().Id != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.MaGiaiThuong)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TenGiaiThuong)</td>
+                            <td>@Html.DisplayFor(modelItem => item.HinhThuc)</td>
+                            <td>@Html.DisplayFor(modelItem => item.NamTangThuong)</td>
+                            <td><button class="btn btn-default btn-sm">Xóa</button></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-giaithuong">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Thêm mới giải thưởng</h4>
+            </div>
+            <form action="@Url.Action("AddGiaiThuong")" data-otf-ajax="true" data-otf-target="#themmoigiaithuong" method="post">
+                <input type="hidden" id="IdMaLyLich" name="IdMaLyLich" value="@Model.FirstOrDefault().IdMaLyLich" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Mã Giải Thưởng:</label>
+                        <input type="text" id="MaGiaiThuong" name="MaGiaiThuong" required oninvalid="this.setCustomValidity('Vui lòng nhập mã giải thưởng!')" oninput="setCustomValidity('')" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tên Giải Thưởng:</label>
+                        <input type="text" id="TenGiaiThuong" name="TenGiaiThuong" required oninvalid="this.setCustomValidity('Vui lòng nhập tên giải thưởng!')" oninput="setCustomValidity('')" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Hình Thức:</label>
+                        <input type="text" id="HinhThuc" name="HinhThuc" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập hình thức!')" oninput="setCustomValidity('')">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Năm Tặng Thưởng:</label>
+                        <input type="text" id="NamTangThuong" name="NamTangThuong" class="form-control" required oninvalid="this.setCustomValidity('Vui lòng nhập năm tặng thưởng!')" oninput="setCustomValidity('')">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nội Dung:</label>
+                        <input type="text" id="NoiDung" name="NoiDung" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

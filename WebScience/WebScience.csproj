@@ -293,13 +293,16 @@
     <Compile Include="Models\tb_BaoChi.cs" />
     <Compile Include="Models\tb_DeTai.cs" />
     <Compile Include="Models\tb_DongTacGia.cs" />
+    <Compile Include="Models\tb_GiaiThuong.cs" />
     <Compile Include="Models\tb_HocHam.cs" />
     <Compile Include="Models\tb_HocVi.cs" />
     <Compile Include="Models\tb_LyLich.cs" />
+    <Compile Include="Models\tb_NhiemVu.cs" />
     <Compile Include="Models\tb_QuaTrinhCongTac.cs" />
     <Compile Include="Models\tb_QuaTrinhDaoTao.cs" />
     <Compile Include="Models\tb_ToChuc.cs" />
     <Compile Include="Models\tb_UserProfile.cs" />
+    <Compile Include="Models\tb_VanBang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -7535,6 +7538,9 @@
     <Content Include="Views\BaoChi\PartialDanhSachBaoChi.cshtml" />
     <Content Include="Views\BaoChi\CreateBaoChi.cshtml" />
     <Content Include="Views\BaoChi\EditBaoChi.cshtml" />
+    <Content Include="Views\LyLich\PartialVanBang.cshtml" />
+    <Content Include="Views\LyLich\PartialGiaiThuong.cshtml" />
+    <Content Include="Views\LyLich\PartialNhiemVu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

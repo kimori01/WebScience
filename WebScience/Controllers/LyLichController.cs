@@ -97,8 +97,15 @@ namespace WebScience.Controllers
             ViewBag.DaoTao = GetDaoTao(_LyLich);
             ViewBag.CongTac = GetCongTac(_LyLich);
             ViewBag.HocVi = unitOfWork.HocViRepository.Get().ToList();
+
+            GetGiaiThuong(_LyLich.Id.ToString());
+            GetVanBang(_LyLich.Id.ToString());
+            GetNhiemVu(_LyLich.Id.ToString());
             return View();
         }
+
+
+
 
         public ActionResult PartialToChuc(ViewToChucLyLich model)
         {
@@ -133,12 +140,10 @@ namespace WebScience.Controllers
             }
             return RedirectToAction("ThongTinLyLich", new { Id = Request.Form["IdLyLich"] });
         }
-
         public ActionResult PartialQuaTrinhDaoTao(List<ViewDaoTaoLyLich> model)
         {
             return View(model);
         }
-
         [HttpPost]
         public ActionResult AddDaoTao(FormCollection model)
         {
@@ -154,7 +159,6 @@ namespace WebScience.Controllers
 
             return RedirectToAction("ThongTinLyLich", new { Id = Request.Form["IdLyLich"] });
         }
-
         public ActionResult EditDaoTao(int Id, int IdLyLich, string MaLyLich)
         {
             var vm = new ViewDaoTaoLyLich();
@@ -170,7 +174,6 @@ namespace WebScience.Controllers
             ViewBag.HocVi = unitOfWork.HocViRepository.Get().ToList();
             return View(vm);
         }
-
         [HttpPost]
         public ActionResult EditDaoTao(ViewDaoTaoLyLich model)
         {
@@ -183,7 +186,6 @@ namespace WebScience.Controllers
             unitOfWork.Save();
             return RedirectToAction("ThongTinLyLich", new { Id = model.IdLyLich });
         }
-
         public ActionResult DeleteDaoTao(int Id, int IdLyLich)
         {
             var vm = unitOfWork.QuaTrinhDaoTaoRepository.Get(x => x.Id == Id).FirstOrDefault();
@@ -191,12 +193,10 @@ namespace WebScience.Controllers
             unitOfWork.Save();
             return RedirectToAction("ThongTinLyLich", new { Id = IdLyLich });
         }
-
         public ActionResult PartialQuaTrinhCongTac(List<ViewCongTacLyLich> model)
         {
             return View(model);
         }
-
         [HttpPost]
         public ActionResult AddCongTac(ViewCongTacLyLich model)
         {
@@ -212,7 +212,6 @@ namespace WebScience.Controllers
 
             return RedirectToAction("ThongTinLyLich", new { Id = model.IdLyLich });
         }
-
         public ActionResult EditCongTac(int Id, int IdLyLich, string MaLyLich)
         {
             var vm = new ViewCongTacLyLich();
@@ -227,7 +226,6 @@ namespace WebScience.Controllers
             vm.GhiChu = string.Empty;
             return View(vm);
         } 
-
         [HttpPost]
         public ActionResult EditCongTac(ViewCongTacLyLich model)
         {
@@ -242,7 +240,6 @@ namespace WebScience.Controllers
 
             return RedirectToAction("ThongTinLyLich", new { Id = model.IdLyLich });
         }
-
         public ActionResult DeleteCongTac(int Id, int IdLyLich)
         {
             var vm = unitOfWork.QuaTrinhCongTacRepository.Get(x => x.Id == Id).FirstOrDefault();
@@ -250,6 +247,33 @@ namespace WebScience.Controllers
             unitOfWork.Save();
 
             return RedirectToAction("ThongTinLyLich", new { Id = IdLyLich });
+        }
+
+        [HttpPost]
+        public ActionResult AddVanBang(tb_VanBang model)
+        {
+            unitOfWork.VanBangRepository.Insert(model);
+            unitOfWork.Save();
+
+            return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
+        }
+
+        [HttpPost]
+        public ActionResult AddGiaiThuong(tb_GiaiThuong model)
+        {
+            unitOfWork.GiaiThuongRepository.Insert(model);
+            unitOfWork.Save();
+
+            return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
+        }
+
+        [HttpPost]
+        public ActionResult AddNhiemVu(tb_NhiemVu model)
+        {
+            unitOfWork.NhiemVuRepository.Insert(model);
+            unitOfWork.Save();
+
+            return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
         }
 
         private List<ViewCongTacLyLich> GetCongTac(ViewLyLich daotao)
@@ -358,6 +382,50 @@ namespace WebScience.Controllers
             viewLyLich.Email = _LyLich.Email;
             return viewLyLich;
         }
+        public void GetGiaiThuong(string Id)
+        {
+            var giaithuong = unitOfWork.GiaiThuongRepository.Get(x => x.IdMaLyLich == Id).ToList();
+            if (giaithuong.Count != 0) ViewData["GiaiThuong"] = giaithuong;
+            else
+            {
+                var listgiaithuong = new List<tb_GiaiThuong>();
+                var vm = new tb_GiaiThuong();
+                vm.IdMaLyLich = Id;
+                listgiaithuong.Add(vm);
+                ViewData["GiaiThuong"] = listgiaithuong;
+            }
+
+        }
+
+        public void GetVanBang(string Id)
+        {
+            var vanbang = unitOfWork.VanBangRepository.Get(x => x.IdMaLyLich == Id).ToList();
+            if (vanbang.Count != 0) ViewData["VanBang"] = vanbang;
+            else
+            {
+                var listvanbang = new List<tb_VanBang>();
+                var vm = new tb_VanBang();
+                vm.IdMaLyLich = Id;
+                listvanbang.Add(vm);
+                ViewData["VanBang"] = listvanbang;
+            }
+        }
+
+        public void GetNhiemVu(string Id)
+        {
+            var nhiemvu = unitOfWork.NhiemVuRepository.Get(x => x.IdMaLyLich == Id).ToList();
+            if (nhiemvu.Count != 0) ViewData["NhiemVu"] = nhiemvu;
+            else
+            {
+                var listnhiemvu = new List<tb_NhiemVu>();
+                var vm = new tb_NhiemVu();
+                vm.IdMaLyLich = Id;
+                listnhiemvu.Add(vm);
+                ViewData["NhiemVu"] = listnhiemvu;
+            }
+        }
+
+
 
         public ActionResult BaoCaoLyLich()
         {
@@ -373,8 +441,10 @@ namespace WebScience.Controllers
 
         public ActionResult DocumentViewerPartialExport()
         {
+            report.DataSource = unitOfWork.LyLichRepository.Get();
             return DocumentViewerExtension.ExportTo(report, Request);
         }
      
+
     }
 }
