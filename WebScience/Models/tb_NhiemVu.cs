@@ -40,11 +40,11 @@ namespace WebScience.Models
         public DateTime? ThoiGianKT { get; set; }
 
         [StringLength(500)]
-        [Display(Name = "Nội Dung")]
+        [Display(Name = "Chương Trình")]
         public string ChuongTrinh { get; set; }
 
         [StringLength(50)]
-        [Display(Name = "Nội Dung")]
+        [Display(Name = "Tình Trạng")]
         public string TinhTrang { get; set; }
 
         [StringLength(500)]

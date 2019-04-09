@@ -3,6 +3,8 @@ $("#NgayDangKy").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
 $("#NgayCongBo").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
 $("#NgayThamGia").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
 $("#NgayXuatBan").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
+$("#ThoiGianBD").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
+$("#ThoiGianKT").datepicker({ autoclose: true, format: 'dd/mm/yyyy' });
 
 $(function () {
     var ajaxFromSubmit = function (e) {

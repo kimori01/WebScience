@@ -1,0 +1,56 @@
+﻿@model WebScience.Models.tb_VanBang
+@{
+    ViewBag.Title = "EditVanBang";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Chỉnh sửa văn bằng</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form method="post" action="@Url.Action("EditVanBang")" data-otf-ajax="true">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input type="hidden" id="IdMaLyLich" name="IdMaLyLich" value="@Model.IdMaLyLich" />
+                    <div class="box-body">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MaVanBang)
+                                @Html.TextBoxFor(model => model.MaVanBang, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.MaVanBang, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NamCap)
+                                @Html.TextBoxFor(model => model.NamCap, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.NamCap, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TenVanBang)
+                                @Html.TextBoxFor(model => model.TenVanBang, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TenVanBang, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NoiDung)
+                                @Html.TextBoxFor(model => model.NoiDung, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,64 @@
+﻿@model WebScience.Models.tb_NhiemVu
+@{
+    ViewBag.Title = "EditNhiemVu";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Chỉnh sửa giải thưởng</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form method="post" action="@Url.Action("EditNhiemVu")" data-otf-ajax="true">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input type="hidden" id="IdMaLyLich" name="IdMaLyLich" value="@Model.IdMaLyLich" />
+                    <div class="box-body">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MaNhiemVu)
+                                @Html.TextBoxFor(model => model.MaNhiemVu, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.MaNhiemVu, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ThoiGianBD)
+                                @Html.TextBoxFor(model => model.ThoiGianBD, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ThoiGianBD, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ChuongTrinh)
+                                @Html.TextBoxFor(model => model.ChuongTrinh, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ChuongTrinh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TenNhiemVu)
+                                @Html.TextBoxFor(model => model.TenNhiemVu, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TenNhiemVu, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ThoiGianKT)
+                                @Html.TextBoxFor(model => model.ThoiGianKT, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ThoiGianKT, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TinhTrang)
+                                @Html.TextBoxFor(model => model.TinhTrang, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

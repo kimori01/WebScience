@@ -111,7 +111,6 @@ namespace WebScience.Controllers
         {
             return View(model);
         }
-
         [HttpPost]
         public ActionResult EditToChuc(FormCollection model)
         {
@@ -258,6 +257,29 @@ namespace WebScience.Controllers
             return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
         }
 
+        public ActionResult EditVanBang(int Id, int IdMaLyLich)
+        {
+            var vm = unitOfWork.VanBangRepository.Get(x => x.Id == Id).FirstOrDefault();
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditVanBang(tb_VanBang model)
+        {
+            unitOfWork.VanBangRepository.Update(model);
+            unitOfWork.Save();
+
+            return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
+        }
+        public ActionResult DeleteVanBang(int Id, int IdMaLyLich)
+        {
+            var vm = unitOfWork.VanBangRepository.Get(x => x.Id == Id && x.IdMaLyLich == IdMaLyLich.ToString()).FirstOrDefault();
+            unitOfWork.VanBangRepository.Delete(vm);
+            unitOfWork.Save();
+            return RedirectToAction("ThongTinLyLich", new { Id = IdMaLyLich });
+        }
+        //------------------------------////
         [HttpPost]
         public ActionResult AddGiaiThuong(tb_GiaiThuong model)
         {
@@ -267,6 +289,31 @@ namespace WebScience.Controllers
             return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
         }
 
+        public ActionResult EditGiaiThuong(int Id, int IdMaLyLich)
+        {
+            var vm = unitOfWork.GiaiThuongRepository.Get(x => x.Id == Id && x.IdMaLyLich == IdMaLyLich.ToString()).FirstOrDefault();
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditGiaiThuong(tb_GiaiThuong model)
+        {
+            unitOfWork.GiaiThuongRepository.Update(model);
+            unitOfWork.Save();
+
+            return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
+        }
+
+        public ActionResult DeleteGiaiThuong(int Id, int IdMaLyLich)
+        {
+            var vm = unitOfWork.GiaiThuongRepository.Get(x => x.Id == Id && x.IdMaLyLich == IdMaLyLich.ToString());
+            unitOfWork.GiaiThuongRepository.Delete(vm);
+            unitOfWork.Save();
+            return RedirectToAction("ThongTinLyLich", new { Id = IdMaLyLich });
+        }
+        //------------------------------////
+
         [HttpPost]
         public ActionResult AddNhiemVu(tb_NhiemVu model)
         {
@@ -274,6 +321,30 @@ namespace WebScience.Controllers
             unitOfWork.Save();
 
             return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
+        }
+
+        public ActionResult EditNhiemVu(int Id, int IdMaLyLich)
+        {
+            var vm = unitOfWork.NhiemVuRepository.Get(x => x.Id == Id && x.IdMaLyLich == IdMaLyLich.ToString()).FirstOrDefault();
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult EditNhiemVu(tb_NhiemVu model)
+        {
+            unitOfWork.NhiemVuRepository.Update(model);
+            unitOfWork.Save();
+
+            return RedirectToAction("ThongTinLyLich", new { Id = model.IdMaLyLich });
+        }
+
+        public ActionResult DeleteNhiemVu(int Id, int IdMaLyLich)
+        {
+            var model = unitOfWork.NhiemVuRepository.Get(x => x.Id == Id && x.IdMaLyLich == IdMaLyLich.ToString());
+            unitOfWork.NhiemVuRepository.Delete(model);
+            unitOfWork.Save();
+
+            return RedirectToAction("ThongTinLyLich", new { Id = IdMaLyLich });
         }
 
         private List<ViewCongTacLyLich> GetCongTac(ViewLyLich daotao)

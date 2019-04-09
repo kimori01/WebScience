@@ -7541,6 +7541,9 @@
     <Content Include="Views\LyLich\PartialVanBang.cshtml" />
     <Content Include="Views\LyLich\PartialGiaiThuong.cshtml" />
     <Content Include="Views\LyLich\PartialNhiemVu.cshtml" />
+    <Content Include="Views\LyLich\EditVanBang.cshtml" />
+    <Content Include="Views\LyLich\EditGiaiThuong.cshtml" />
+    <Content Include="Views\LyLich\EditNhiemVu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

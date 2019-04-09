@@ -12,18 +12,21 @@
                     <th>Mã Văn Bằng</th>
                     <th>Tên Văn Bằng</th>
                     <th>Năm Cấp</th>
-                    <th style="width: 40px"></th>
+                    <th></th>
                 </tr>
                 @if (Model.FirstOrDefault().Id != 0)
                 {
                     foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.MaVanBang)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TenVanBang)</td>
-                            <td>@Html.DisplayFor(modelItem => item.NamCap)</td>
-                            <td><button class="btn btn-default btn-sm">Xóa</button></td>
-                        </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.MaVanBang)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TenVanBang)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NamCap)</td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditVanBang", new { Id = item.Id, IdMaLyLich = item.IdMaLyLich }) |
+                            @Html.ActionLink("Delete", "DeleteVanBang", new { Id = item.Id, IdMaLyLich = item.IdMaLyLich })
+                        </td>
+                    </tr>
                     }
                 }
 

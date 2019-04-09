@@ -13,19 +13,22 @@
                     <th>Tên Giải Thưởng</th>
                     <th>Hình Thức</th>
                     <th>Năm Tăng Thưởng</th>
-                    <th style="width: 40px"></th>
+                    <th></th>
                 </tr>
                 @if (Model.FirstOrDefault().Id != 0)
                 {
                     foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.MaGiaiThuong)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TenGiaiThuong)</td>
-                            <td>@Html.DisplayFor(modelItem => item.HinhThuc)</td>
-                            <td>@Html.DisplayFor(modelItem => item.NamTangThuong)</td>
-                            <td><button class="btn btn-default btn-sm">Xóa</button></td>
-                        </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.MaGiaiThuong)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TenGiaiThuong)</td>
+                        <td>@Html.DisplayFor(modelItem => item.HinhThuc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NamTangThuong)</td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditGiaiThuong", new { Id = item.Id, IdMaLyLich = item.IdMaLyLich }) |
+                            @Html.ActionLink("Delete", "DeleteGiaiThuong", new { Id = item.Id, IdMaLyLich = item.IdMaLyLich })
+                        </td>
+                    </tr>
                     }
                 }
             </tbody>
