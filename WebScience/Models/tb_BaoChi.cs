@@ -46,6 +46,7 @@ namespace WebScience.Models
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn ngày xuất bản")]
         [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày tháng")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime? NgayXuatBan { get; set; }
 
         [StringLength(500)]

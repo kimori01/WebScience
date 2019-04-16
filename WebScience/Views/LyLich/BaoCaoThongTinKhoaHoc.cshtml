@@ -1,0 +1,10 @@
+﻿<section class="content">
+    @Html.DevExpress().DocumentViewer(settings => {
+      settings.Name = "DocumentViewer";
+      settings.CallbackRouteValues = new { Controller = "LyLich", Action = "BaoCaoThongTinKhoaHoc" };
+      settings.ExportRouteValues = new { Controller = "LyLich", Action = "BaoCaoThongTinKhoaHocExport" };
+      settings.Report = (XtraReport)Model;
+      settings.ToolbarMode = DocumentViewerToolbarMode.Ribbon;
+  }).GetHtml()
+</section>
+

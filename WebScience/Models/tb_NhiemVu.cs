@@ -32,11 +32,13 @@ namespace WebScience.Models
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn thời gian bắt đầu")]
         [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime? ThoiGianBD { get; set; }
 
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn thời gian kết thúc")]
         [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime? ThoiGianKT { get; set; }
 
         [StringLength(500)]

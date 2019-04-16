@@ -27,6 +27,7 @@ namespace WebScience.Models
         public string IdMaDeTai { get; set; }
 
         [Column(TypeName = "smalldatetime")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime? NgayThamGia { get; set; }
 
         [StringLength(500)]
