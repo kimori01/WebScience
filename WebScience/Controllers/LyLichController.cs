@@ -314,7 +314,7 @@ namespace WebScience.Controllers
         }
         //------------------------------////
 
-        [HttpPost]
+        [HttpPost]  
         public ActionResult AddNhiemVu(tb_NhiemVu model)
         {
             unitOfWork.NhiemVuRepository.Insert(model);
