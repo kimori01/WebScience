@@ -315,6 +315,12 @@
     <Compile Include="Reports\XtraReport1.Designer.cs">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\XtraReport_DanhSachLyLich.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XtraReport_DanhSachLyLich.Designer.cs">
+      <DependentUpon>XtraReport_DanhSachLyLich.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\XtraReport_LyLichKhoaHoc.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -331,6 +337,7 @@
     <Compile Include="ViewData\ViewCongTacLyLich.cs" />
     <Compile Include="ViewData\ViewDaoTaoLyLich.cs" />
     <Compile Include="ViewData\ViewLyLich.cs" />
+    <Compile Include="ViewData\ViewReportThongTinLyLich.cs" />
     <Compile Include="ViewData\ViewToChucLyLich.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -7544,6 +7551,7 @@
     <Content Include="Views\LyLich\EditVanBang.cshtml" />
     <Content Include="Views\LyLich\EditGiaiThuong.cshtml" />
     <Content Include="Views\LyLich\EditNhiemVu.cshtml" />
+    <Content Include="Views\LyLich\BaoCaoThongTinKhoaHoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7574,6 +7582,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\XtraReport1.resx">
       <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XtraReport_DanhSachLyLich.resx">
+      <DependentUpon>XtraReport_DanhSachLyLich.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\XtraReport_LyLichKhoaHoc.resx">
       <DependentUpon>XtraReport_LyLichKhoaHoc.cs</DependentUpon>

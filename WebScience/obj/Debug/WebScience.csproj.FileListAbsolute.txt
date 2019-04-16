@@ -159,6 +159,7 @@ D:\WorkingCode\WebScience\WebScience\bin\Microsoft.AI.WindowsServer.xml
 D:\WorkingCode\WebScience\WebScience\bin\Microsoft.AI.Web.xml
 D:\WorkingCode\WebScience\WebScience\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.Reports.XtraReport1.resources
+D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.Reports.XtraReport_DanhSachLyLich.resources
 D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.Reports.XtraReport_LyLichKhoaHoc.resources
 D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.csproj.GenerateResource.cache
 D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.dll.licenses

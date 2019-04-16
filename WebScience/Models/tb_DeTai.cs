@@ -40,11 +40,13 @@ namespace WebScience.Models
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn ngày công bố")]
         [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu công bố")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime? NgayCongBo { get; set; }
 
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn ngày đăng ký")]
         [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày đăng ký")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime? NgayDangKy { get; set; }
 
         [StringLength(50)]

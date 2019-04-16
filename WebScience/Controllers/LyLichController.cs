@@ -12,7 +12,8 @@ namespace WebScience.Controllers
     public class LyLichController : Controller
     {
         private UnitOfWork.UnitOfWork unitOfWork = new UnitOfWork.UnitOfWork();
-        WebScience.Reports.XtraReport1 report = new WebScience.Reports.XtraReport1();
+        WebScience.Reports.XtraReport_DanhSachLyLich report = new WebScience.Reports.XtraReport_DanhSachLyLich();
+        WebScience.Reports.XtraReport_DanhSachLyLich reportkhoahoc = new WebScience.Reports.XtraReport_DanhSachLyLich();
         public ActionResult Index()
         {
             return RedirectToAction(nameof(DanhSachLyLich));
@@ -114,12 +115,12 @@ namespace WebScience.Controllers
         [HttpPost]
         public ActionResult EditToChuc(FormCollection model)
         {
-            var vmtochuc = unitOfWork.ToChucRepository.Get().Where(x => x.MaTaiKhoan == Request.Form["MaLyLich"].ToString()).FirstOrDefault();
+            var vmtochuc = unitOfWork.ToChucRepository.Get().Where(x => x.IdMaLyLich == Request.Form["IdLyLich"].ToString()).FirstOrDefault();
 
             if (vmtochuc == null)
             {
                 var vm = new tb_ToChuc();
-                vm.MaTaiKhoan = Request.Form["MaLyLich"];
+                vm.IdMaLyLich = Request.Form["IdLyLich"].ToString();
                 vm.TenToChuc = Request.Form["TenToChuc"];
                 vm.TenNguoiLanhDao = Request.Form["TenNguoiLanhDao"];
                 vm.DienThoaiLanhDao = Request.Form["DienThoaiLanhDao"];
@@ -314,7 +315,7 @@ namespace WebScience.Controllers
         }
         //------------------------------////
 
-        [HttpPost]
+        [HttpPost]  
         public ActionResult AddNhiemVu(tb_NhiemVu model)
         {
             unitOfWork.NhiemVuRepository.Insert(model);
@@ -411,7 +412,7 @@ namespace WebScience.Controllers
 
         private ViewToChucLyLich GetToChuc(ViewLyLich lylich)
         {
-            var result = unitOfWork.ToChucRepository.Get(x => x.MaTaiKhoan == lylich.MaLyLich).FirstOrDefault();
+            var result = unitOfWork.ToChucRepository.Get(x => x.IdMaLyLich == lylich.Id.ToString()).FirstOrDefault();
             if (result == null)
             {
                 var vm = new ViewToChucLyLich();
@@ -500,8 +501,74 @@ namespace WebScience.Controllers
 
         public ActionResult BaoCaoLyLich()
         {
-            ViewData["Report"] = new WebScience.Reports.XtraReport1();
+            ViewData["Report"] = new WebScience.Reports.XtraReport_DanhSachLyLich();
             return View();
+        }
+
+        public ActionResult BaoCaoThongTinKhoaHoc(int IdLyLich)
+        {
+            var lylich = unitOfWork.LyLichRepository.Get(x => x.Id == IdLyLich).FirstOrDefault();
+            var hocham = unitOfWork.HocHamRepository.Get(x => x.MaHocHam == lylich.MaHocHam).FirstOrDefault();
+            var hocvi = unitOfWork.HocViRepository.Get(x => x.MaHocVi == lylich.MaHocVi).FirstOrDefault();
+            var tochuc = unitOfWork.ToChucRepository.Get(x => x.IdMaLyLich == IdLyLich.ToString()).FirstOrDefault();
+            ViewReportThongTinLyLich model = new ViewReportThongTinLyLich();
+            model.Id = lylich.Id;
+            model.MaLyLich = lylich.MaLyLich;
+            model.HoVaTen = lylich.HoVaTen;
+            model.NgaySinh = lylich.NgaySinh.ToString();
+            model.GioiTinh = lylich.GioiTinh;
+            model.MaHocHam = lylich.MaHocHam;
+            model.TenHocHam = hocham.TenHocHam;
+            model.NamHocHam = lylich.NamHocHam;
+            model.MaHocVi = lylich.MaHocVi;
+            model.TenHocVi = hocvi.TenHocVi;
+            model.NamHocVi = lylich.NamHocVi;
+            model.DiaChi = lylich.DiaChi;
+            model.DienThoai = lylich.DienThoai;
+            model.DiDong = lylich.DiDong;
+            model.Fax = lylich.Fax;
+            model.Email = lylich.Email;
+            model.MaToChuc = tochuc.Id.ToString();
+            model.TenToChuc = tochuc.TenToChuc;
+            model.TenNguoiLanhDao = tochuc.TenNguoiLanhDao;
+            model.DienThoaiLanhDao = tochuc.DienThoaiLanhDao;
+            model.DiaChiToChuc = tochuc.DiaChiToChuc;
+
+            reportkhoahoc.DataSource = model;
+            return View();
+        }
+
+        public ActionResult BaoCaoThongTinKhoaHocExport(int IdLyLich)
+        {
+            var lylich = unitOfWork.LyLichRepository.Get(x => x.Id == IdLyLich).FirstOrDefault();
+            var hocham = unitOfWork.HocHamRepository.Get(x => x.MaHocHam == lylich.MaHocHam).FirstOrDefault();
+            var hocvi = unitOfWork.HocViRepository.Get(x => x.MaHocVi == lylich.MaHocVi).FirstOrDefault();
+            var tochuc = unitOfWork.ToChucRepository.Get(x => x.IdMaLyLich == IdLyLich.ToString()).FirstOrDefault();
+            ViewReportThongTinLyLich model = new ViewReportThongTinLyLich();
+            model.Id = lylich.Id;
+            model.MaLyLich = lylich.MaLyLich;
+            model.HoVaTen = lylich.HoVaTen;
+            model.NgaySinh = lylich.NgaySinh.ToString();
+            model.GioiTinh = lylich.GioiTinh;
+            model.MaHocHam = lylich.MaHocHam;
+            model.TenHocHam = hocham.TenHocHam;
+            model.NamHocHam = lylich.NamHocHam;
+            model.MaHocVi = lylich.MaHocVi;
+            model.TenHocVi = hocvi.TenHocVi;
+            model.NamHocVi = lylich.NamHocVi;
+            model.DiaChi = lylich.DiaChi;
+            model.DienThoai = lylich.DienThoai;
+            model.DiDong = lylich.DiDong;
+            model.Fax = lylich.Fax;
+            model.Email = lylich.Email;
+            model.MaToChuc = tochuc.Id.ToString();
+            model.TenToChuc = tochuc.TenToChuc;
+            model.TenNguoiLanhDao = tochuc.TenNguoiLanhDao;
+            model.DienThoaiLanhDao = tochuc.DienThoaiLanhDao;
+            model.DiaChiToChuc = tochuc.DiaChiToChuc;
+
+            reportkhoahoc.DataSource = model;
+            return DocumentViewerExtension.ExportTo(reportkhoahoc, Request);
         }
 
         public ActionResult DocumentViewerPartial()

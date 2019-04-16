@@ -26,6 +26,7 @@
         [Column(TypeName = "smalldatetime")]
         [Required(ErrorMessage = "Vui lòng chọn ngày sinh")]
         [DataType(DataType.DateTime, ErrorMessage = "Không đúng kiểu ngày sinh")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime? NgaySinh { get; set; }
 
         [StringLength(10)]

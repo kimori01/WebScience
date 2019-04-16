@@ -88,10 +88,6 @@ namespace WebScience.Models
                 .Property(e => e.NamTotNghiep)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<tb_ToChuc>()
-                .Property(e => e.MaTaiKhoan)
-                .IsUnicode(false);
-
             modelBuilder.Entity<tb_UserProfile>()
                 .Property(e => e.UserId)
                 .IsUnicode(false);
