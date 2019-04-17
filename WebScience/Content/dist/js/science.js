@@ -39,7 +39,7 @@ function seachData(table_search) {
             html += '</tr>';
             $.each(result, function (key, item) {
                 html += '<tr>';
-                html += '<td class="nr">' + item.MaLyLich + '</td>';
+                html += '<td class="nr">' + item.Id + '</td>';
                 html += '<td>' + item.HoVaTen + '</td>';
                 html += '<td>' + item.MaHocHam + '</td>';
                 html += '<td>' + item.MaHocVi + '</td>';
