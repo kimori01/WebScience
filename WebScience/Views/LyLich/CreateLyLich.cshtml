@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.NgaySinh)
-                                    @Html.TextBoxFor(model => model.NgaySinh, new { @class = "form-control", @type= "date", @style = "line-height: 1 !important;" })
+                                    @Html.TextBoxFor(model => model.NgaySinh, new { @class = "form-control", @type = "date", @style = "line-height: 1 !important;" })
                                     @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
@@ -48,6 +48,11 @@
                                     @Html.LabelFor(model => model.MaHocVi)
                                     @Html.DropDownListFor(model => model.MaHocVi, itemhocvi, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.MaHocVi, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ChucDanh)
+                                    @Html.TextBoxFor(model => model.ChucDanh, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ChucDanh, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DiaChi)
@@ -85,6 +90,11 @@
                                     @Html.LabelFor(model => model.NamHocVi)
                                     @Html.TextBoxFor(model => model.NamHocVi, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.NamHocVi, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ChucVu)
+                                    @Html.TextBoxFor(model => model.ChucVu, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DiDong)

@@ -16,7 +16,7 @@ namespace WebScience.Models
         [Key]
         [Column(Order = 1)]
         [StringLength(20)]
-        public string MaTaiKhoan { get; set; }
+        public string IdMaLyLich { get; set; }
 
         [StringLength(20)]
         public string MaBacDaoTao { get; set; }

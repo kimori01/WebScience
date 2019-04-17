@@ -13,7 +13,8 @@ namespace WebScience.Controllers
     {
         private UnitOfWork.UnitOfWork unitOfWork = new UnitOfWork.UnitOfWork();
         WebScience.Reports.XtraReport_DanhSachLyLich report = new WebScience.Reports.XtraReport_DanhSachLyLich();
-        WebScience.Reports.XtraReport_DanhSachLyLich reportkhoahoc = new WebScience.Reports.XtraReport_DanhSachLyLich();
+        WebScience.Reports.XtraReport_LyLichKhoaHoc reportkhoahoc = new WebScience.Reports.XtraReport_LyLichKhoaHoc();
+        WebScience.Reports.Sub.XtraReport_Sub_QuaTrinhDaoTao sub_quytrinhdaotao = new Reports.Sub.XtraReport_Sub_QuaTrinhDaoTao();
         public ActionResult Index()
         {
             return RedirectToAction(nameof(DanhSachLyLich));
@@ -148,7 +149,7 @@ namespace WebScience.Controllers
         public ActionResult AddDaoTao(FormCollection model)
         {
             var vm = new tb_QuaTrinhDaoTao();
-            vm.MaTaiKhoan = Request.Form["MaLyLich"];
+            vm.IdMaLyLich = Request.Form["IdLyLich"];
             vm.MaBacDaoTao = Request.Form["MaBacDaoTao"];
             vm.NamTotNghiep = Request.Form["NamTotNghiep"];
             vm.NoiDaoTao = Request.Form["NoiDaoTao"];
@@ -177,7 +178,7 @@ namespace WebScience.Controllers
         [HttpPost]
         public ActionResult EditDaoTao(ViewDaoTaoLyLich model)
         {
-            var vm = unitOfWork.QuaTrinhDaoTaoRepository.Get(x => x.Id == model.Id && x.MaTaiKhoan == model.MaLyLich).FirstOrDefault();
+            var vm = unitOfWork.QuaTrinhDaoTaoRepository.Get(x => x.Id == model.Id && x.IdMaLyLich == model.IdLyLich.ToString()).FirstOrDefault();
             vm.MaBacDaoTao = model.MaBacDaoTao;
             vm.NamTotNghiep = model.NamTotNghiep;
             vm.NoiDaoTao = model.NoiDaoTao;
@@ -201,7 +202,7 @@ namespace WebScience.Controllers
         public ActionResult AddCongTac(ViewCongTacLyLich model)
         {
             var vm = new tb_QuaTrinhCongTac();
-            vm.MaTaiKhoan = model.MaLyLich;
+            vm.IdMaLyLich = model.IdLyLich.ToString();
             vm.ThoiGian = model.ThoiGian;
             vm.ToChucCongTac = model.ToChucCongTac;
             vm.ViTriCongTac = model.ViTriCongTac;
@@ -351,7 +352,7 @@ namespace WebScience.Controllers
         private List<ViewCongTacLyLich> GetCongTac(ViewLyLich daotao)
         {
             var model = new List<ViewCongTacLyLich>();
-            var result = unitOfWork.QuaTrinhCongTacRepository.Get(x => x.MaTaiKhoan == daotao.MaLyLich);
+            var result = unitOfWork.QuaTrinhCongTacRepository.Get(x => x.IdMaLyLich == daotao.Id.ToString());
             if (result.Count() == 0)
             {
                 var vm = new ViewCongTacLyLich();
@@ -367,7 +368,7 @@ namespace WebScience.Controllers
                           {
                               Id = s.Id,
                               IdLyLich = daotao.Id,
-                              MaLyLich = s.MaTaiKhoan,
+                              MaLyLich = s.IdMaLyLich,
                               ThoiGian = s.ThoiGian,
                               ViTriCongTac = s.ViTriCongTac,
                               ToChucCongTac = s.ToChucCongTac,
@@ -381,7 +382,7 @@ namespace WebScience.Controllers
         private List<ViewDaoTaoLyLich> GetDaoTao(ViewLyLich daotao)
         {
             var model = new List<ViewDaoTaoLyLich>();
-            var result = unitOfWork.QuaTrinhDaoTaoRepository.Get(x => x.MaTaiKhoan == daotao.MaLyLich);
+            var result = unitOfWork.QuaTrinhDaoTaoRepository.Get(x => x.IdMaLyLich == daotao.Id.ToString());
             if (result.Count() == 0)
             {
                 var vm = new ViewDaoTaoLyLich();
@@ -397,7 +398,7 @@ namespace WebScience.Controllers
                           {
                              Id = s.Id,
                              IdLyLich = daotao.Id,
-                             MaLyLich = s.MaTaiKhoan,
+                             MaLyLich = s.IdMaLyLich,
                              MaBacDaoTao = s.MaBacDaoTao,
                              TenBacDaoTao = unitOfWork.HocViRepository.Get(x => x.MaHocVi == s.MaBacDaoTao).FirstOrDefault().TenHocVi,
                              NoiDaoTao = s.NoiDaoTao,
@@ -505,71 +506,6 @@ namespace WebScience.Controllers
             return View();
         }
 
-        public ActionResult BaoCaoThongTinKhoaHoc(int IdLyLich)
-        {
-            var lylich = unitOfWork.LyLichRepository.Get(x => x.Id == IdLyLich).FirstOrDefault();
-            var hocham = unitOfWork.HocHamRepository.Get(x => x.MaHocHam == lylich.MaHocHam).FirstOrDefault();
-            var hocvi = unitOfWork.HocViRepository.Get(x => x.MaHocVi == lylich.MaHocVi).FirstOrDefault();
-            var tochuc = unitOfWork.ToChucRepository.Get(x => x.IdMaLyLich == IdLyLich.ToString()).FirstOrDefault();
-            ViewReportThongTinLyLich model = new ViewReportThongTinLyLich();
-            model.Id = lylich.Id;
-            model.MaLyLich = lylich.MaLyLich;
-            model.HoVaTen = lylich.HoVaTen;
-            model.NgaySinh = lylich.NgaySinh.ToString();
-            model.GioiTinh = lylich.GioiTinh;
-            model.MaHocHam = lylich.MaHocHam;
-            model.TenHocHam = hocham.TenHocHam;
-            model.NamHocHam = lylich.NamHocHam;
-            model.MaHocVi = lylich.MaHocVi;
-            model.TenHocVi = hocvi.TenHocVi;
-            model.NamHocVi = lylich.NamHocVi;
-            model.DiaChi = lylich.DiaChi;
-            model.DienThoai = lylich.DienThoai;
-            model.DiDong = lylich.DiDong;
-            model.Fax = lylich.Fax;
-            model.Email = lylich.Email;
-            model.MaToChuc = tochuc.Id.ToString();
-            model.TenToChuc = tochuc.TenToChuc;
-            model.TenNguoiLanhDao = tochuc.TenNguoiLanhDao;
-            model.DienThoaiLanhDao = tochuc.DienThoaiLanhDao;
-            model.DiaChiToChuc = tochuc.DiaChiToChuc;
-
-            reportkhoahoc.DataSource = model;
-            return View();
-        }
-
-        public ActionResult BaoCaoThongTinKhoaHocExport(int IdLyLich)
-        {
-            var lylich = unitOfWork.LyLichRepository.Get(x => x.Id == IdLyLich).FirstOrDefault();
-            var hocham = unitOfWork.HocHamRepository.Get(x => x.MaHocHam == lylich.MaHocHam).FirstOrDefault();
-            var hocvi = unitOfWork.HocViRepository.Get(x => x.MaHocVi == lylich.MaHocVi).FirstOrDefault();
-            var tochuc = unitOfWork.ToChucRepository.Get(x => x.IdMaLyLich == IdLyLich.ToString()).FirstOrDefault();
-            ViewReportThongTinLyLich model = new ViewReportThongTinLyLich();
-            model.Id = lylich.Id;
-            model.MaLyLich = lylich.MaLyLich;
-            model.HoVaTen = lylich.HoVaTen;
-            model.NgaySinh = lylich.NgaySinh.ToString();
-            model.GioiTinh = lylich.GioiTinh;
-            model.MaHocHam = lylich.MaHocHam;
-            model.TenHocHam = hocham.TenHocHam;
-            model.NamHocHam = lylich.NamHocHam;
-            model.MaHocVi = lylich.MaHocVi;
-            model.TenHocVi = hocvi.TenHocVi;
-            model.NamHocVi = lylich.NamHocVi;
-            model.DiaChi = lylich.DiaChi;
-            model.DienThoai = lylich.DienThoai;
-            model.DiDong = lylich.DiDong;
-            model.Fax = lylich.Fax;
-            model.Email = lylich.Email;
-            model.MaToChuc = tochuc.Id.ToString();
-            model.TenToChuc = tochuc.TenToChuc;
-            model.TenNguoiLanhDao = tochuc.TenNguoiLanhDao;
-            model.DienThoaiLanhDao = tochuc.DienThoaiLanhDao;
-            model.DiaChiToChuc = tochuc.DiaChiToChuc;
-
-            reportkhoahoc.DataSource = model;
-            return DocumentViewerExtension.ExportTo(reportkhoahoc, Request);
-        }
 
         public ActionResult DocumentViewerPartial()
         {
@@ -582,7 +518,68 @@ namespace WebScience.Controllers
             report.DataSource = unitOfWork.LyLichRepository.Get();
             return DocumentViewerExtension.ExportTo(report, Request);
         }
-     
 
+        public ActionResult BaoCaoThongTinKhoaHoc(int IdLyLich)
+        {
+            ViewData["Report"] = new WebScience.Reports.XtraReport_LyLichKhoaHoc();
+            TempData["IdLyLich"] = IdLyLich;
+            return View();
+        }
+
+        public ActionResult PartialBaoCaoThongTinKhoaHoc(int IdLyLich)
+        {
+            reportkhoahoc.DataSource = GetThongTinLyLich(IdLyLich).ToList();
+            reportkhoahoc.IdLyLich = IdLyLich;
+            reportkhoahoc.QuaTrinhDaoTao();
+            return PartialView("PartialBaoCaoThongTinKhoaHoc", reportkhoahoc);
+        }
+
+        public ActionResult PartialBaoCaoThongTinKhoaHocExport(int IdLyLich)
+        {
+            reportkhoahoc.DataSource = GetThongTinLyLich(IdLyLich).ToList();
+            reportkhoahoc.IdLyLich = IdLyLich;
+            reportkhoahoc.QuaTrinhDaoTao();
+            return DocumentViewerExtension.ExportTo(reportkhoahoc, Request);
+        }
+
+        public IEnumerable<ViewReportThongTinLyLich> GetThongTinLyLich(int IdLyLich)
+        {
+            var lylich = unitOfWork.LyLichRepository.Get(x => x.Id == IdLyLich);
+            var hocham = unitOfWork.HocHamRepository.Get();
+            var hocvi = unitOfWork.HocViRepository.Get();
+            var tochuc = unitOfWork.ToChucRepository.Get(x => x.IdMaLyLich == IdLyLich.ToString());
+
+            var model = from l in lylich
+                        join hh in hocham on l.MaHocHam equals hh.MaHocHam
+                        join hv in hocvi on l.MaHocVi equals hv.MaHocVi
+                        select new ViewReportThongTinLyLich
+                        {
+                            Id = l.Id,
+                            MaLyLich = l.MaLyLich,
+                            HoVaTen = l.HoVaTen,
+                            NgaySinh = l.NgaySinh.ToString(),
+                            GioiTinh = l.GioiTinh,
+                            MaHocHam = l.MaHocHam,
+                            TenHocHam = hh.TenHocHam,
+                            NamHocHam = l.NamHocHam,
+                            MaHocVi = l.MaHocVi,
+                            TenHocVi = hv.TenHocVi,
+                            NamHocVi = l.NamHocVi,
+                            ChucDanh = l.ChucDanh,
+                            ChucVu = l.ChucVu,
+                            DiaChi = l.DiaChi,
+                            DienThoai = l.DienThoai,
+                            DiDong = l.DiDong,
+                            Fax = l.Fax,
+                            Email = l.Email,
+                            MaToChuc = (tochuc.Count() == 0 ? string.Empty : tochuc.FirstOrDefault(x => x.IdMaLyLich == l.Id.ToString()).Id.ToString()),
+                            TenToChuc = (tochuc.Count() == 0 ? string.Empty : tochuc.FirstOrDefault(x => x.IdMaLyLich == l.Id.ToString()).TenToChuc),
+                            TenNguoiLanhDao = (tochuc.Count() == 0 ? string.Empty : tochuc.FirstOrDefault(x => x.IdMaLyLich == l.Id.ToString()).TenNguoiLanhDao),
+                            DienThoaiLanhDao = (tochuc.Count() == 0 ? string.Empty : tochuc.FirstOrDefault(x => x.IdMaLyLich == l.Id.ToString()).DienThoaiLanhDao),
+                            DiaChiToChuc = (tochuc.Count() == 0 ? string.Empty : tochuc.FirstOrDefault(x => x.IdMaLyLich == l.Id.ToString()).DiaChiToChuc)
+                        };
+
+            return model;
+        }
     }
 }

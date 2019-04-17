@@ -72,14 +72,6 @@ namespace WebScience.Models
                 .Property(e => e.Email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<tb_QuaTrinhCongTac>()
-                .Property(e => e.MaTaiKhoan)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tb_QuaTrinhDaoTao>()
-                .Property(e => e.MaTaiKhoan)
-                .IsUnicode(false);
-
             modelBuilder.Entity<tb_QuaTrinhDaoTao>()
                 .Property(e => e.MaBacDaoTao)
                 .IsUnicode(false);

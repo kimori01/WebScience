@@ -309,6 +309,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Sub\XtraReport_Sub_QuaTrinhDaoTao.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Sub\XtraReport_Sub_QuaTrinhDaoTao.Designer.cs">
+      <DependentUpon>XtraReport_Sub_QuaTrinhDaoTao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\XtraReport1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -7552,6 +7558,7 @@
     <Content Include="Views\LyLich\EditGiaiThuong.cshtml" />
     <Content Include="Views\LyLich\EditNhiemVu.cshtml" />
     <Content Include="Views\LyLich\BaoCaoThongTinKhoaHoc.cshtml" />
+    <Content Include="Views\LyLich\PartialBaoCaoThongTinKhoaHoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7580,6 +7587,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\Sub\XtraReport_Sub_QuaTrinhDaoTao.resx">
+      <DependentUpon>XtraReport_Sub_QuaTrinhDaoTao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\XtraReport1.resx">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
