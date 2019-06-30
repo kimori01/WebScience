@@ -49,6 +49,14 @@
         public string NamHocVi { get; set; }
 
         [StringLength(500)]
+        [Display(Name = "Chức Danh")]
+        public string ChucDanh { get; set; }
+
+        [StringLength(500)]
+        [Display(Name = "Chức Vụ")]
+        public string ChucVu { get; set; }
+
+        [StringLength(500)]
         public string DiaChi { get; set; }
 
         [StringLength(20)]

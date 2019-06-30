@@ -1,0 +1,7 @@
+﻿@Html.DevExpress().DocumentViewer(settings => {
+    settings.Name = "DocumentViewer";
+    settings.CallbackRouteValues = new { Controller = "LyLich", Action = "PartialBaoCaoThongTinKhoaHoc", IdLyLich = TempData["IdLyLich"] };
+    settings.ExportRouteValues = new { Controller = "LyLich", Action = "PartialBaoCaoThongTinKhoaHocExport", IdLyLich = TempData["IdLyLich"] };
+    settings.Report = (XtraReport)Model;
+    settings.ToolbarMode = DocumentViewerToolbarMode.Ribbon;
+}).GetHtml()

@@ -168,3 +168,4 @@ D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.csproj.CopyComplete
 D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.dll
 D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.pdb
 D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.csprojAssemblyReference.cache
+D:\WorkingCode\WebScience\WebScience\obj\Debug\WebScience.Reports.Sub.XtraReport_Sub_QuaTrinhDaoTao.resources
